@@ -181,6 +181,7 @@ body {
 .service-details h3 {
   margin-top: 0;
   color: var(--primary-color);
+  font-size: 1.8rem;
 }
 
 .service-details p {
