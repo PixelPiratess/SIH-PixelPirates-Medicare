@@ -85,6 +85,32 @@ const Home = () => {
             </div>
           </div>
         </section>
+
+        <section className="premium-features">
+          <div className="premium-heading">
+            <span className="star">⭐</span>
+            <h2>Premium Features</h2>
+            <span className="star">⭐</span>
+          </div>
+          <div className="premium-grid">
+            <div className="premium-feature">
+              <h3>Advanced Diagnostics</h3>
+              <p>Get detailed health diagnostics with our premium AI technology.</p>
+            </div>
+            <div className="premium-feature">
+              <h3>Priority Support</h3>
+              <p>Enjoy expedited support with dedicated priority service.</p>
+            </div>
+            <div className="premium-feature">
+              <h3>Exclusive Health Plans</h3>
+              <p>Access exclusive, tailored health plans designed for optimal care.</p>
+            </div>
+            <div className="premium-feature">
+              <h3>Personal Health Coach</h3>
+              <p>Work with a personal health coach to achieve your wellness goals.</p>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
