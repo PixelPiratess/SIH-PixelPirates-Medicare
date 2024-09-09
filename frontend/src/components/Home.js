@@ -42,21 +42,29 @@ const Home = () => {
         </section>
 
         <section className="features">
-          <div className="feature">
-            <h3>AI Health Diagnosis</h3>
-            <p>Cutting-edge AI technology for accurate health diagnostics.</p>
+          <div className="feature-box">
+            <div className="feature">
+              <h3>AI Health Diagnosis</h3>
+              <p>Cutting-edge AI technology for accurate health diagnostics.</p>
+            </div>
           </div>
-          <div className="feature">
-            <h3>Appointment Booking</h3>
-            <p>Easy and efficient appointment booking system.</p>
+          <div className="feature-box">
+            <div className="feature">
+              <h3>Appointment Booking</h3>
+              <p>Easy and efficient appointment booking system.</p>
+            </div>
           </div>
-          <div className="feature">
-            <h3>24/7 Support</h3>
-            <p>Round-the-clock customer support for all your queries.</p>
+          <div className="feature-box">
+            <div className="feature">
+              <h3>24/7 Support</h3>
+              <p>Round-the-clock customer support for all your queries.</p>
+            </div>
           </div>
-          <div className="feature">
-            <h3>Personalized Health Plans</h3>
-            <p>Customized health plans tailored to individual needs.</p>
+          <div className="feature-box">
+            <div className="feature">
+              <h3>Personalized Health Plans</h3>
+              <p>Customized health plans tailored to individual needs.</p>
+            </div>
           </div>
         </section>
 
