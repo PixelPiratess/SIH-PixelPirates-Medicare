@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, Users, Clock, Hospital } from 'lucide-react';
+import { State, City } from 'country-state-city';
 import './Home.css';
 
 const services = [
@@ -17,15 +18,73 @@ const services = [
   { id: 12, title: 'Dermatology', icon: <Hospital />, details: ['Service HH', 'Service II', 'Service JJ'] },
 ];
 
+const hospitals = [
+  { id: 1, name: 'City Hospital', location: 'Mumbai, Maharashtra', city: 'Mumbai', state: 'Maharashtra' },
+  { id: 2, name: 'State Medical Center', location: 'Delhi, Delhi', city: 'Delhi', state: 'Delhi' },
+  { id: 3, name: 'General Hospital', location: 'Bangalore, Karnataka', city: 'Bangalore', state: 'Karnataka' },
+  { id: 4, name: 'Community Health Center', location: 'Chennai, Tamil Nadu', city: 'Chennai', state: 'Tamil Nadu' },
+  { id: 5, name: 'District Hospital', location: 'Kolkata, West Bengal', city: 'Kolkata', state: 'West Bengal' },
+  // Top 5 Hospitals ends here
+  { id: 6, name: 'Public Health Center', location: 'Hyderabad, Telangana', city: 'Hyderabad', state: 'Telangana' },
+  // More hospitals...
+];
+
 const Home = () => {
   const [selectedService, setSelectedService] = useState(1);
   const [darkMode, setDarkMode] = useState(false);
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedState, setSelectedState] = useState('');
+  const [displayLocation, setDisplayLocation] = useState('');
+  const [filteredHospitals, setFilteredHospitals] = useState(hospitals.slice(0, 5));
 
   useEffect(() => {
     const isDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(isDarkMode);
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, []);
+
+  const detectLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+            const data = await response.json();
+            const address = data.address || {};
+            const city = address.town || address.city || '';
+            const state = address.state || '';
+            setSelectedCity(city);
+            setSelectedState(state);
+            setDisplayLocation(`Your Location: ${city}, ${state}`);
+          } catch (error) {
+            console.error('Error fetching location data:', error);
+          }
+        },
+        (error) => {
+          console.error('Error detecting location:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+
+  const states = State.getStatesOfCountry('IN');
+  const cities = City.getCitiesOfState('IN', selectedState);
+
+  useEffect(() => {
+    let updatedHospitals = [];
+    if (selectedCity) {
+      updatedHospitals = hospitals.filter(hospital => hospital.city === selectedCity).slice(0, 5);
+    } else if (selectedState) {
+      updatedHospitals = hospitals.filter(hospital => hospital.state === selectedState).slice(0, 5);
+    } else {
+      updatedHospitals = hospitals.slice(0, 5);
+    }
+  
+    setFilteredHospitals(updatedHospitals);
+  }, [selectedState, selectedCity]);  
 
   return (
     <div className={`home ${darkMode ? 'dark-mode' : ''}`}>
@@ -116,6 +175,61 @@ const Home = () => {
             <div className="premium-feature">
               <h3>Personal Health Coach</h3>
               <p>Work with a personal health coach to achieve your wellness goals.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="partnered-hospitals">
+          <h2>Partnered Hospitals</h2>
+          <div className="hospital-container">
+            <div className="hospital-options">
+              <select
+                value={selectedState}
+                onChange={(e) => setSelectedState(e.target.value)}
+              >
+                <option value="">Select State</option>
+                {states.map((state) => (
+                  <option key={state.isoCode} value={state.isoCode}>
+                    {state.name}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value)}
+                disabled={!selectedState}
+              >
+                <option value="">Select City</option>
+                {cities.map((city) => (
+                  <option key={city.id} value={city.name}>
+                    {city.name}
+                  </option>
+                ))}
+              </select>
+              <div className="or-divider">
+                <span>or</span>
+              </div>
+              <button className="location-button" onClick={detectLocation}>
+                Detect my Location
+              </button>
+              {displayLocation && (
+                <p>{displayLocation}</p>
+              )}
+            </div>
+            <div className="hospital-carousel">
+              <h3>{selectedCity ? `Top Hospitals in ${selectedCity}` : selectedState ? `Top Hospitals in ${selectedState}` : 'Top 5 Hospitals'}</h3>
+              <div className="carousel-wrapper">
+                {filteredHospitals.length > 0 ? (
+                  filteredHospitals.map((hospital) => (
+                    <div key={hospital.id} className="carousel-item">
+                      <h3>{hospital.name}</h3>
+                      <p>{hospital.location}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No hospitals available.</p>
+                )}
+              </div>
             </div>
           </div>
         </section>

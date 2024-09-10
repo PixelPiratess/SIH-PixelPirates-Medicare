@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Menu, Heart, Activity, Pill, Book, BriefcaseMedical, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ toggleTheme, isDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,6 +36,10 @@ const Header = ({ toggleTheme, isDarkMode }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMenuOpen]);
 
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
   return (
     <header className={`header ${isDarkMode ? 'dark' : 'light'} ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-content">
@@ -59,7 +65,7 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           <button className="menu-toggle" onClick={toggleMenu} aria-label="Toggle menu">
             <Menu size={24} />
           </button>
-          <button className="login-button">Login</button>
+          <button className="login-button" onClick={handleLoginClick}>Login</button>
           <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
             {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
           </button>

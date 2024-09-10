@@ -285,6 +285,211 @@ h1, h2, h3 {
   z-index: 1;
 }
 
+/* Partnered Hospitals Section */
+.partnered-hospitals {
+  padding: 3rem;
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.partnered-hospitals h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.hospital-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.hospital-options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 300px;
+}
+
+.hospital-options select,
+.hospital-options input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #333333;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.hospital-options select:focus,
+.hospital-options input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.or-divider {
+  text-align: center;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.or-divider::before {
+  left: 0;
+}
+
+.or-divider::after {
+  right: 0;
+}
+
+.or-divider span {
+  background-color: #f8f9fa;
+  padding: 0 10px;
+  position: relative;
+  z-index: 1;
+  color: #666;
+}
+
+.hospital-options .location-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.hospital-options .location-button:hover {
+  background-color: #3a7bc8;
+  transform: translateY(-2px);
+}
+
+.hospital-options .location-button:active {
+  transform: translateY(0);
+}
+
+.hospital-carousel {
+  flex: 2;
+  overflow: hidden;
+}
+
+.hospital-carousel h3 {
+  margin-bottom: 1.5rem;
+  color: #4a90e2;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.carousel-wrapper {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1.5rem;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.carousel-wrapper::-webkit-scrollbar-thumb {
+  background: #4a90e2;
+  border-radius: 4px;
+}
+
+.carousel-item {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  min-width: 250px;
+  flex: 0 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.carousel-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #4a90e2;
+  font-size: 1.2rem;
+}
+
+.carousel-item p {
+  color: #666666;
+  margin-bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .partnered-hospitals {
+    padding: 2rem;
+  }
+
+  .hospital-container {
+    flex-direction: column;
+  }
+
+  .hospital-options,
+  .hospital-carousel {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hospital-options {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .partnered-hospitals {
+    padding: 1.5rem;
+  }
+
+  .partnered-hospitals h2 {
+    font-size: 2rem;
+  }
+
+  .carousel-item {
+    min-width: 200px;
+  }
+}
+
 @keyframes pulse {
   0% {
     transform: translateX(-50%) translateY(-50%) scale(1);
