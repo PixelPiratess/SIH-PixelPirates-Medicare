@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, Heart, Activity, Pill, Book, BriefcaseMedical, X } from 'lucide-react';
+import { Sun, Moon, Menu, Activity, Pill, Book, BriefcaseMedical, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
