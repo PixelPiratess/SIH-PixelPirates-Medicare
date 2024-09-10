@@ -24,6 +24,7 @@ const hospitals = [
   { id: 3, name: 'General Hospital', location: 'Bangalore, Karnataka', city: 'Bangalore', state: 'Karnataka' },
   { id: 4, name: 'Community Health Center', location: 'Chennai, Tamil Nadu', city: 'Chennai', state: 'Tamil Nadu' },
   { id: 5, name: 'District Hospital', location: 'Kolkata, West Bengal', city: 'Kolkata', state: 'West Bengal' },
+  // Top 5 Hospitals ends here
   { id: 6, name: 'Public Health Center', location: 'Hyderabad, Telangana', city: 'Hyderabad', state: 'Telangana' },
   // More hospitals...
 ];
