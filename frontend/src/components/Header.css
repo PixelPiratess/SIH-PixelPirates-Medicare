@@ -36,13 +36,17 @@
 .logo {
   display: flex;
   align-items: center;
+  height: auto; /* Let the content determine the height */
 }
 
-.logo h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-left: 0.5rem;
+.logo img {
+  height: 80px; /* Set a reasonable height for the logo */
+  width: auto;   /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure the image doesn't overflow its container */
+  background: none; /* Ensure no background is applied */
 }
+
+
 
 .nav {
   display: flex;

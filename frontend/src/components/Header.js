@@ -44,9 +44,8 @@ const Header = ({ toggleTheme, isDarkMode }) => {
     <header className={`header ${isDarkMode ? 'dark' : 'light'} ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-content">
         <div className="logo">
-          <Heart size={32} color="#4a90e2" />
-          <h1>MediCare</h1>
-        </div>
+          <img src="/Medicare_Logo.svg" alt="Medicare Logo"/>
+          </div>
         <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
           {isMenuOpen && (
             <button className="close-menu" onClick={closeMenu} aria-label="Close menu">
