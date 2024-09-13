@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Users, Clock, Hospital } from 'lucide-react';
+import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar } from 'lucide-react';
 import { State, City } from 'country-state-city';
 import './Home.css';
 
@@ -103,24 +103,28 @@ const Home = () => {
         <section className="features">
           <div className="feature-box">
             <div className="feature">
+              <Stethoscope size={32} />
               <h3>AI Health Diagnosis</h3>
               <p>Cutting-edge AI technology for accurate health diagnostics.</p>
             </div>
           </div>
           <div className="feature-box">
             <div className="feature">
+              <Calendar size={32} />
               <h3>Appointment Booking</h3>
               <p>Easy and efficient appointment booking system.</p>
             </div>
           </div>
           <div className="feature-box">
             <div className="feature">
+              <Clock size={32} />
               <h3>24/7 Support</h3>
               <p>Round-the-clock customer support for all your queries.</p>
             </div>
           </div>
           <div className="feature-box">
             <div className="feature">
+              <Heart size={32} />
               <h3>Personalized Health Plans</h3>
               <p>Customized health plans tailored to individual needs.</p>
             </div>
