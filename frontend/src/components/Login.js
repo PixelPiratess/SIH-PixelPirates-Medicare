@@ -27,11 +27,11 @@ const LoginPage = () => {
           <UserCircle size={48} color="#4a90e2" />
           <h2>For Patients/General User</h2>
           <p>Access your personal health dashboard, book appointments, and connect with healthcare professionals.</p>
-          <button className="login-button-n patient">Patient Login</button>
+          <button className="login-button-n patient" onClick={() => window.location.href = '/user-login'}>Patient Login</button>
           <div className="signup-text">
             <p>Don't have an account?</p>
             <div className="signup-links">
-              <a href="/user-login">Sign up</a>
+              <a href="/user-signup">Sign up</a>
             </div>
           </div>
         </div>
