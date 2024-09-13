@@ -1,157 +1,166 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300;400;700&display=swap');
 
 :root {
+  --content-max-width: 1200px;
+  --content-padding: 2rem;
   --primary-color: #4a90e2;
-  --background-color: #f0f2f5;
+  --background-color: #ffffff;
   --text-color: #333333;
   --secondary-text-color: #666666;
-  --border-color: #cccccc;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --feature-background: #f8f9fa;
 }
 
 body {
   font-family: 'Lato', sans-serif;
-  margin: 0;
-  padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
+  margin: 0;
+  padding: 0;
 }
 
 .login-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 2rem;
-}
-
-.login-wrapper {
-  display: flex;
-  width: 100%;
-  max-width: 900px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: var(--box-shadow);
+  max-width: var(--content-max-width);
+  margin: 180px auto 4rem; /* Increased top margin to prevent merging with header */
+  background-color: var(--background-color);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(74, 144, 226, 0.1);
   overflow: hidden;
+  position: relative; /* Added to ensure proper stacking context */
+  z-index: 1; /* Ensure it's above any background elements but below the header */
 }
 
-.login-sidebar {
-  flex: 1;
-  background-color: var(--primary-color);
-  color: white;
+.login-section {
+  width: 50%;
+  padding: 4rem 3rem; /* Increased padding for better spacing */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 3rem 2rem;
+}
+
+.login-content {
+  max-width: 350px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.login-sidebar h1 {
+.hospital-section {
+  background-color: var(--feature-background);
+}
+
+.patient-section {
+  background-color: var(--background-color);
+}
+
+h2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 1.5rem 0;
+  line-height: 1.2;
 }
 
-.login-sidebar p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
-.toggle-button {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.toggle-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.login-form {
-  flex: 1.5;
-  padding: 3rem 2rem;
-}
-
-.login-form h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
-  color: var(--primary-color);
-  margin-bottom: 2rem;
-}
-
-.input-group {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.input-group label {
-  position: absolute;
-  left: 0.75rem;
-  top: 0.75rem;
-  font-size: 1rem;
+p {
   color: var(--secondary-text-color);
-  pointer-events: none;
-  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
-.input-group input:focus,
-.input-group input:not(:placeholder-shown) {
-  border-color: var(--primary-color);
-  outline: none;
-}
-
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-  top: -0.5rem;
-  left: 0.5rem;
-  font-size: 0.8rem;
-  background-color: white;
-  padding: 0 0.25rem;
-  color: var(--primary-color);
-}
-
-.submit-button {
+.login-button-n {
   width: 100%;
   background-color: var(--primary-color);
   color: white;
-  border: none;
-  padding: 0.75rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 5px;
-  font-size: 1rem;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.submit-button:hover {
+.login-button-n:hover {
   background-color: #3a7bc8;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.login-button-n.patient {
+  background-color: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.login-button-n.patient:hover {
+  background-color: var(--feature-background);
+}
+
+.signup-text {
+  text-align: center;
+}
+
+.signup-text p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.signup-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.signup-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.signup-links a:hover {
+  color: #3a7bc8;
+  text-decoration: underline;
+}
+
+.divider {
+  color: var(--secondary-text-color);
 }
 
 @media (max-width: 768px) {
-  .login-wrapper {
+  .login-container {
     flex-direction: column;
+    margin: 100px 1rem 2rem; /* Adjusted top margin for mobile */
   }
-  
-  .login-sidebar,
-  .login-form {
+  .login-section {
     width: 100%;
+    padding: 3rem 2rem; /* Adjusted padding for mobile */
   }
+}
+
+/* Floating background elements */
+.login-section::before,
+.login-section::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.login-section::before {
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+}
+
+.login-section::after {
+  bottom: -30px;
+  left: -30px;
+  width: 100px;
+  height: 100px;
 }
