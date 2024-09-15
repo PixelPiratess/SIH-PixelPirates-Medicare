@@ -1,23 +1,52 @@
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300;400;700&display=swap');
 
+/* Background Elements */
+.background-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.background-left,
+.background-right {
+  position: fixed;
+  top: 0;
+  height: 100%;
+}
+
+.background-left {
+  left: 0;
+}
+
+.background-right {
+  right: 0;
+}
+
+
 /* Define root variables */
 :root {
   --content-max-width: 1200px;
   --content-padding: 2rem;
   --primary-color: #4a90e2;
-  --background-color: #ffffff;
+  --background-color: #f5f5f5;
   --text-color: #333333;
   --secondary-text-color: #666666;
   --feature-background: #f8f9fa;
   --golden-color: #f7c948;
   --gradient-color-1: #4a90e2;
   --gradient-color-2: #007aff;
+  --card-background: rgba(255, 255, 255, 0.7);
 }
 
 /* Dark mode styles */
 .dark-mode {
   --background-color: #1a1a1a;
+  --card-background: rgba(26, 26, 26, 0.7);
   --text-color: #ffffff;
   --secondary-text-color: #cccccc;
   --feature-background: #2a2a2a;
@@ -83,6 +112,24 @@ h1, h2, h3 {
   font-size: 1.1rem;
   color: var(--secondary-text-color);
   margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .hero-content, .hero-image {
+    flex: none;
+    width: 100%;
+  }
+
+  .hero-image img {
+    max-width: 80%;
+    height: auto;
+  }
 }
 
 .cta-button {
@@ -394,6 +441,14 @@ h1, h2, h3 {
   font-size: 1rem;
   font-weight: 600;
   transition: background-color 0.3s, transform 0.3s;
+}
+
+.location-display {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: var(--feature-background);
+  border-radius: 8px;
+  text-align: center;
 }
 
 .hospital-options .location-button:hover {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar } from 'lucide-react';
+import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin } from 'lucide-react';
 import { State, City } from 'country-state-city';
 import './Home.css';
 
@@ -59,14 +59,17 @@ const Home = () => {
             setDisplayLocation(`Your Location: ${city}, ${state}`);
           } catch (error) {
             console.error('Error fetching location data:', error);
+            setDisplayLocation('Unable to detect location. Please select manually.');
           }
         },
         (error) => {
           console.error('Error detecting location:', error);
+          setDisplayLocation('Unable to detect location. Please select manually.');
         }
       );
     } else {
       console.error('Geolocation is not supported by this browser.');
+      setDisplayLocation('Geolocation is not supported. Please select manually.');
     }
   };
 
@@ -84,10 +87,24 @@ const Home = () => {
     }
   
     setFilteredHospitals(updatedHospitals);
-  }, [selectedState, selectedCity]);  
+  }, [selectedState, selectedCity]);
 
   return (
     <div className={`home ${darkMode ? 'dark-mode' : ''}`}>
+
+    <div className="background-elements">
+        <svg className="background-left" width="300" height="100%" viewBox="0 0 300 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="0" cy="400" r="200" fill="var(--primary-color)" fillOpacity="0.1" />
+          <circle cx="50" cy="650" r="150" fill="var(--primary-color)" fillOpacity="0.05" />
+          <circle cx="250" cy="150" r="100" fill="var(--primary-color)" fillOpacity="0.05" />
+        </svg>
+        <svg className="background-right" width="300" height="100%" viewBox="0 0 300 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="300" cy="400" r="200" fill="var(--primary-color)" fillOpacity="0.1" />
+          <circle cx="250" cy="150" r="150" fill="var(--primary-color)" fillOpacity="0.05" />
+          <circle cx="50" cy="650" r="100" fill="var(--primary-color)" fillOpacity="0.05" />
+        </svg>
+    </div>
+
       <div className="content-wrapper">
         <section className="hero">
           <div className="hero-content">
@@ -101,34 +118,20 @@ const Home = () => {
         </section>
 
         <section className="features">
-          <div className="feature-box">
-            <div className="feature">
-              <Stethoscope size={32} />
-              <h3>AI Health Diagnosis</h3>
-              <p>Cutting-edge AI technology for accurate health diagnostics.</p>
+          {[
+            { icon: <Stethoscope size={32} />, title: "AI Health Diagnosis", description: "Cutting-edge AI technology for accurate health diagnostics." },
+            { icon: <Calendar size={32} />, title: "Appointment Booking", description: "Easy and efficient appointment booking system." },
+            { icon: <Clock size={32} />, title: "24/7 Support", description: "Round-the-clock customer support for all your queries." },
+            { icon: <Heart size={32} />, title: "Personalized Health Plans", description: "Customized health plans tailored to individual needs." }
+          ].map((feature, index) => (
+            <div key={index} className="feature-box">
+              <div className="feature">
+                {feature.icon}
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
             </div>
-          </div>
-          <div className="feature-box">
-            <div className="feature">
-              <Calendar size={32} />
-              <h3>Appointment Booking</h3>
-              <p>Easy and efficient appointment booking system.</p>
-            </div>
-          </div>
-          <div className="feature-box">
-            <div className="feature">
-              <Clock size={32} />
-              <h3>24/7 Support</h3>
-              <p>Round-the-clock customer support for all your queries.</p>
-            </div>
-          </div>
-          <div className="feature-box">
-            <div className="feature">
-              <Heart size={32} />
-              <h3>Personalized Health Plans</h3>
-              <p>Customized health plans tailored to individual needs.</p>
-            </div>
-          </div>
+          ))}
         </section>
 
         <section className="services">
@@ -214,10 +217,10 @@ const Home = () => {
                 <span>or</span>
               </div>
               <button className="location-button" onClick={detectLocation}>
-                Detect my Location
+                <MapPin size={16} /> Detect my Location
               </button>
               {displayLocation && (
-                <p>{displayLocation}</p>
+                <p className="location-display">{displayLocation}</p>
               )}
             </div>
             <div className="hospital-carousel">
@@ -231,7 +234,7 @@ const Home = () => {
                     </div>
                   ))
                 ) : (
-                  <p>No hospitals available.</p>
+                  <p>No hospitals available in this area.</p>
                 )}
               </div>
             </div>

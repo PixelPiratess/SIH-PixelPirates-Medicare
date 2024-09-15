@@ -13,7 +13,7 @@ const LoginPage = () => {
           <button className="login-button-n" onClick={() => window.location.href = '/hospital-login'}>Hospital Login</button>
           <div className="signup-text">
             <p>Don't have an account?</p>
-            <div className="hospital-signup">
+            <div className="signup-links">
               <a href="mailto:support@example.com">Contact Support</a>
               <span className="divider">|</span>
               <a href="/hospital-signup">Request Access</a>
