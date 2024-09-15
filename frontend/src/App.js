@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import UserLogin from './components/UserLogin';
 import UserSignup from './components/UserSignup';
+import HospitalLogin from './components/HospitalLogin';
+import HospitalSignup from './components/HospitalSignup';
 import './App.css';
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/user-login" element={<UserLogin />} />
             <Route path="/user-signup" element={<UserSignup />} />
+            <Route path="/hospital-login" element={<HospitalLogin />} />
+            <Route path="/hospital-signup" element={<HospitalSignup />} />
           </Routes>
         </main>
         <Footer />

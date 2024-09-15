@@ -10,10 +10,10 @@ const LoginPage = () => {
           <Hospital size={48} color="#4a90e2" />
           <h2>For Healthcare Providers</h2>
           <p>Access our comprehensive platform to manage patient care, appointments, and telemedicine services efficiently.</p>
-          <button className="login-button-n">Hospital Login</button>
+          <button className="login-button-n" onClick={() => window.location.href = '/hospital-login'}>Hospital Login</button>
           <div className="signup-text">
             <p>Don't have an account?</p>
-            <div className="signup-links">
+            <div className="hospital-signup">
               <a href="mailto:support@example.com">Contact Support</a>
               <span className="divider">|</span>
               <a href="/hospital-signup">Request Access</a>
