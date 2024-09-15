@@ -4,10 +4,10 @@
   --content-max-width: 1200px;
   --content-padding: 2rem;
   --primary-color: #4a90e2;
-  --background-color: #ffffff;
+  --background-color: #f0f0f0;
   --text-color: #333333;
   --secondary-text-color: #666666;
-  --feature-background: #f8f9fa;
+  --feature-background: #e0e0e0;
 }
 
 body {

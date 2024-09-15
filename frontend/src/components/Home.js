@@ -92,18 +92,18 @@ const Home = () => {
   return (
     <div className={`home ${darkMode ? 'dark-mode' : ''}`}>
 
-    <div className="background-elements">
-        <svg className="background-left" width="300" height="100%" viewBox="0 0 300 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="0" cy="400" r="200" fill="var(--primary-color)" fillOpacity="0.1" />
-          <circle cx="50" cy="650" r="150" fill="var(--primary-color)" fillOpacity="0.05" />
-          <circle cx="250" cy="150" r="100" fill="var(--primary-color)" fillOpacity="0.05" />
+      <div className="background-elements">
+        <svg className="background-left" width="100%" height="100%" viewBox="0 0 500 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="400" r="200" stroke="var(--primary-color)" strokeOpacity="0.4" strokeWidth="8" fill="none" />
+          <circle cx="200" cy="650" r="150" stroke="var(--primary-color)" strokeOpacity="0.45" strokeWidth="6" fill="none" />
+          <circle cx="250" cy="150" r="100" stroke="var(--primary-color)" strokeOpacity="0.5" strokeWidth="4" fill="none" />
         </svg>
-        <svg className="background-right" width="300" height="100%" viewBox="0 0 300 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="300" cy="400" r="200" fill="var(--primary-color)" fillOpacity="0.1" />
-          <circle cx="250" cy="150" r="150" fill="var(--primary-color)" fillOpacity="0.05" />
-          <circle cx="50" cy="650" r="100" fill="var(--primary-color)" fillOpacity="0.05" />
+        <svg className="background-right" width="100%" height="100%" viewBox="0 0 500 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="300" cy="400" r="200" stroke="var(--primary-color)" strokeOpacity="0.4" strokeWidth="8" fill="none" />
+          <circle cx="250" cy="150" r="150" stroke="var(--primary-color)" strokeOpacity="0.45" strokeWidth="6" fill="none" />
+          <circle cx="300" cy="650" r="100" stroke="var(--primary-color)" strokeOpacity="0.5" strokeWidth="4" fill="none" />
         </svg>
-    </div>
+      </div>
 
       <div className="content-wrapper">
         <section className="hero">

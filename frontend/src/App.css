@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background-color: #f0f4f8;
+  background-color: #f0f0f0;
   color: #333333;
 }
 
@@ -41,7 +41,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f0f0f0;
 }
 
 ::-webkit-scrollbar-thumb {

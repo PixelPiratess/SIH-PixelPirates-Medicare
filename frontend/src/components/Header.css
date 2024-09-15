@@ -9,7 +9,7 @@
 }
 
 .header.light {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   color: #333333;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -45,8 +45,6 @@
   max-width: 100%; /* Ensure the image doesn't overflow its container */
   background: none; /* Ensure no background is applied */
 }
-
-
 
 .nav {
   display: flex;
@@ -130,7 +128,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 2rem;
       flex-direction: column;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
