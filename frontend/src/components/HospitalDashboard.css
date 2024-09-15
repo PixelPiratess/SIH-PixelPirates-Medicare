@@ -1,0 +1,115 @@
+.hospital-dashboard {
+    padding-top: 120px; /* Adjust this value based on your header height */
+    min-height: calc(100vh - 120px); /* Subtract the header height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-color);
+  }
+  
+  .dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-header h1 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-color);
+    margin: 0;
+  }
+  
+  .dashboard-content {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .hospital-info, .dashboard-stats {
+    background-color: var(--feature-background);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .hospital-info h2, .dashboard-stats h2 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-item svg {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+  }
+  
+  .stat-item {
+    margin-bottom: 1rem;
+  }
+  
+  .stat-item h3 {
+    font-size: 1rem;
+    color: var(--secondary-text-color);
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-item p {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+  
+  .hospital-dashboard.loading,
+  .hospital-dashboard.error,
+  .hospital-dashboard.pending {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px); /* Subtract the header height */
+    text-align: center;
+  }
+  
+  .hospital-dashboard.error {
+    color: #e74c3c;
+  }
+  
+  .hospital-dashboard.pending svg {
+    margin-bottom: 1rem;
+  }
+  
+  .hospital-dashboard.pending h2 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .hospital-dashboard.pending p {
+    font-size: 1.1rem;
+    color: var(--secondary-text-color);
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-content {
+      flex-direction: column;
+    }
+    
+    .hospital-dashboard {
+      padding-top: 100px; /* Adjust for smaller screens */
+    }
+  }
