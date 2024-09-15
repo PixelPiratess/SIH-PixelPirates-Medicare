@@ -8,6 +8,7 @@ import UserLogin from './components/UserLogin';
 import UserSignup from './components/UserSignup';
 import HospitalLogin from './components/HospitalLogin';
 import HospitalSignup from './components/HospitalSignup';
+import HospitalDashboard from './components/HospitalDashboard';
 import './App.css';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/user-signup" element={<UserSignup />} />
             <Route path="/hospital-login" element={<HospitalLogin />} />
             <Route path="/hospital-signup" element={<HospitalSignup />} />
+            <Route path="/hospital-dashboard" element={<HospitalDashboard />} />
           </Routes>
         </main>
         <Footer />

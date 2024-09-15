@@ -26,8 +26,15 @@ body.dark-mode {
   flex-direction: column;
 }
 
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 main {
   flex: 1;
+  overflow-y: auto;
 }
 
 /* Smooth scrolling */
