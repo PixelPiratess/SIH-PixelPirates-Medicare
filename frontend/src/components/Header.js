@@ -1,7 +1,81 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Menu, Activity, Pill, Book, BriefcaseMedical, X, LogOut } from 'lucide-react';
+import { Sun, Moon, Menu, Activity, Pill, X, LogOut, Link2, Crown, BriefcaseBusiness } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+
+const HoverDropdownMenu1 = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <li 
+      className="dropdown-container1"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <a href="#">
+        <BriefcaseBusiness size={18}/>
+        Services
+      </a>
+      {isHovered && (
+        <ul className="dropdown-menu1">
+          <li class="drop-menu"><a  class="dmn" href="/">Medical History</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Telemedicine</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Doctor Consultation</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Schedule Test</a></li>
+        </ul>
+      )}
+    </li>
+  );
+};
+const HoverDropdownMenu2 = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <li 
+      className="dropdown-container1"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <a href="#">
+        <Crown size={18}/>
+        Premium Services
+      </a>
+      {isHovered && (
+        <ul className="dropdown-menu1">
+          <li class="drop-menu"><a  class="dmn" href="/">Detailed Report</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Chat with Doctor</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Direct Appointment Booking</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Personalized Health/Diet Plan</a></li>
+        </ul>
+      )}
+    </li>
+  );
+};
+const HoverDropdownMenu3 = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <li 
+      className="dropdown-container1"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <a href="#">
+        <Link2 size={18}/>
+        Quick Links
+      </a>
+      {isHovered && (
+        <ul className="dropdown-menu1">
+          <li class="drop-menu"><a  class="dmn" href="/">Donations</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Basic First Aid</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Government Schemes</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Are we Depressed?</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">About us</a></li>
+        </ul>
+      )}
+    </li>
+  );
+};
 
 const Header = ({ toggleTheme, isDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,9 +158,12 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           <ul>
             <li><Link to="/" onClick={closeMenu}><Activity size={18} /> Home</Link></li>
             <li><Link to="/diagnosis" onClick={closeMenu}><Pill size={18} /> AI Diagnosis</Link></li>
-            <li><Link to="/appointments" onClick={closeMenu}><Book size={18} /> Appointments</Link></li>
-            <li><Link to="/telemedicine" onClick={closeMenu}><BriefcaseMedical size={18} /> Telemedicine</Link></li>
-            <li><Link to="/about" onClick={closeMenu}><Activity size={18} /> About</Link></li>
+            {/* <li><Link to="/appointments" onClick={closeMenu}><Book size={18} /> Appointments</Link></li> */}
+            <HoverDropdownMenu1/>
+            <HoverDropdownMenu2/>
+            {/* <li><Link to="/telemedicine" onClick={closeMenu}><BriefcaseMedical size={18} /> Telemedicine</Link></li> */}
+            <HoverDropdownMenu3/>
+            {/* <li><Link to="/about" onClick={closeMenu}><Activity size={18} /> About</Link></li> */}
           </ul>
         </nav>
         <div className="header-actions">

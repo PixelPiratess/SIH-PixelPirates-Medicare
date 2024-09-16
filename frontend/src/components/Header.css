@@ -188,3 +188,110 @@
     color: #ffffff;
   }
 }
+
+.dropdown-container1 {
+  position: relative;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu1 {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  padding: 0.5rem;
+  background: var(--background-color);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0;
+  width: max-content;
+  min-width: 150px;
+}
+
+.dropdown-container1:hover .dropdown-menu1 {
+  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* .dropdown-menu1 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+} */
+
+.dropdown-menu1 .drop-menu {
+  margin: 0.25rem 0;
+}
+
+.dropdown-menu1 .dmn {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.dropdown-menu1 .dmn:hover {
+    color: var(--primary-color);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu1::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 16px;
+  height: 16px;
+  /* background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95)); */
+  box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.04);
+  border-radius: 0;
+}
+
+.dropdown-menu1::after {
+  content: '';
+  display: block;
+  height: 20px;
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+}
+
+/* Main menu item styling */
+.dropdown-container1 > .dmn {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.dropdown-container1 > a:hover {
+  color: var(--primary-color);
+
+}
+
+.dropdown-container1 > a svg {
+  margin-right: 0.5rem;
+}
