@@ -6,6 +6,7 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const hospitalAuthRoutes = require('./routes/hospitalAuth');
 const roleCheck = require('./middleware/roleCheck');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/auth/hospital', hospitalAuthRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Protected routes
 app.get('/api/dashboard', roleCheck('user'), (req, res) => {
