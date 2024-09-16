@@ -43,8 +43,15 @@ const UserLogin = () => {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userName', data.name);
+        localStorage.setItem('role', data.role);
         window.dispatchEvent(new Event('storage'));
-        navigate('/dashboard');
+
+        // Redirect based on user role
+        if (data.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/dashboard');
+        }
       } else {
         setError(data.message || 'Invalid email or password');
       }
