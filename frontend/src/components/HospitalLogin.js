@@ -48,6 +48,8 @@ const HospitalLogin = () => {
 
       if (response.ok) {
         localStorage.setItem('hospitalToken', data.token);
+        localStorage.setItem('userName', data.hospitalName);
+        window.dispatchEvent(new Event('storage'));
         navigate('/hospital-dashboard');
       } else {
         setError(data.message || 'Invalid email or password');

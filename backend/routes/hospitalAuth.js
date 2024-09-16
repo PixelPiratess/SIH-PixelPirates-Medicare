@@ -60,42 +60,46 @@ router.post("/signup", async (req, res) => {
 
 // Hospital Login
 router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    // Check if hospital exists
-    let hospital = await Hospital.findOne({ email });
-    if (!hospital) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
-
-    // Check password
-    const isMatch = await bcrypt.compare(password, hospital.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
-    }
-
-    // Create and send JWT token
-    const payload = {
-      hospital: {
-        id: hospital.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" },
-      (err, token) => {
-        if (err) throw err;
-        res.json({ token });
+    try {
+      const { email, password } = req.body;
+  
+      // Check if hospital exists
+      let hospital = await Hospital.findOne({ email });
+      if (!hospital) {
+        return res.status(400).json({ message: "Invalid credentials" });
       }
-    );
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
+  
+      // Check password
+      const isMatch = await bcrypt.compare(password, hospital.password);
+      if (!isMatch) {
+        return res.status(400).json({ message: "Invalid credentials" });
+      }
+  
+      // Create and send JWT token
+      const payload = {
+        hospital: {
+          id: hospital.id,
+        },
+      };
+  
+      jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" },
+        (err, token) => {
+          if (err) throw err;
+          // Include hospitalName in the response
+          res.json({ 
+            token, 
+            hospitalName: hospital.hospitalName 
+          });
+        }
+      );
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  });
 
 // Hospital Dashboard
 router.get("/dashboard", auth, async (req, res) => {
@@ -109,6 +113,31 @@ router.get("/dashboard", auth, async (req, res) => {
     if (!hospital) {
       return res.status(404).json({ msg: "Hospital not found" });
     }
+    res.json(hospital);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// Update Hospital Stats
+router.put("/update-stats", auth, async (req, res) => {
+  try {
+    const { totalPatients, appointmentsToday, availableBeds, doctorsOnDuty } =
+      req.body;
+
+    const hospital = await Hospital.findById(req.hospital.id);
+    if (!hospital) {
+      return res.status(404).json({ msg: "Hospital not found" });
+    }
+
+    hospital.totalPatients = totalPatients;
+    hospital.appointmentsToday = appointmentsToday;
+    hospital.availableBeds = availableBeds;
+    hospital.doctorsOnDuty = doctorsOnDuty;
+
+    await hospital.save();
+
     res.json(hospital);
   } catch (err) {
     console.error(err.message);
