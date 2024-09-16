@@ -12,7 +12,7 @@ const HoverDropdownMenu1 = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <a href="#">
+      <a href="/">
         <BriefcaseBusiness size={18}/>
         Services
       </a>
@@ -36,7 +36,7 @@ const HoverDropdownMenu2 = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <a href="#">
+      <a href="/">
         <Crown size={18}/>
         Premium Services
       </a>
@@ -60,7 +60,7 @@ const HoverDropdownMenu3 = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <a href="#">
+      <a href="/">
         <Link2 size={18}/>
         Quick Links
       </a>
