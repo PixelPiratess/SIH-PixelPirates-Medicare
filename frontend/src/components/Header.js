@@ -69,7 +69,7 @@ const HoverDropdownMenu3 = () => {
           <li class="drop-menu"><a  class="dmn" href="/">Donations</a></li>
           <li class="drop-menu"><a class="dmn" href="/">Basic First Aid</a></li>
           <li class="drop-menu"><a class="dmn" href="/">Government Schemes</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Are we Depressed?</a></li>
+          <li class="drop-menu"><a class="dmn" href="/">Are You Depressed?</a></li>
           <li class="drop-menu"><a class="dmn" href="/">About us</a></li>
         </ul>
       )}
