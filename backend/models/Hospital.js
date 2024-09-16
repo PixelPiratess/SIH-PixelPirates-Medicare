@@ -35,6 +35,22 @@ const hospitalSchema = new mongoose.Schema({
   accepted: {
     type: Boolean,
     default: false
+  },
+  totalPatients: {
+    type: Number,
+    default: 0
+  },
+  appointmentsToday: {
+    type: Number,
+    default: 0
+  },
+  availableBeds: {
+    type: Number,
+    default: 0
+  },
+  doctorsOnDuty: {
+    type: Number,
+    default: 0
   }
 }, { timestamps: true });
 

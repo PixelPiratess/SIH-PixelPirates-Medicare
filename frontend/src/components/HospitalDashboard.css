@@ -1,78 +1,134 @@
-.hospital-dashboard {
-    padding-top: 120px; /* Adjust this value based on your header height */
-    min-height: calc(100vh - 120px); /* Subtract the header height */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5a623;
+    --background-color: #f4f7fa;
+    --feature-background: #ffffff;
+    --text-color: #333333;
+    --secondary-text-color: #666666;
+    --border-color: #e0e0e0;
+  }
+  
+  .hospital-dashboard {
+    padding-top: 120px;
+    min-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--background-color);
-  }
-  
-  .dashboard-container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 2rem;
-    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
   }
   
   .dashboard-header {
+    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
   }
   
   .dashboard-header h1 {
-    font-family: 'Poppins', sans-serif;
     color: var(--primary-color);
     margin: 0;
+    font-size: 2.5rem;
   }
   
   .dashboard-content {
-    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    flex-wrap: wrap;
+    padding: 0 2rem;
+    box-sizing: border-box;
   }
   
-  .hospital-info, .dashboard-stats {
+  .card {
     background-color: var(--feature-background);
     border-radius: 10px;
     padding: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    min-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .hospital-info h2, .dashboard-stats h2 {
-    font-family: 'Poppins', sans-serif;
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card h2 {
     color: var(--primary-color);
     margin-bottom: 1rem;
+    font-size: 1.5rem;
   }
   
   .info-item {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
   
   .info-item svg {
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
     color: var(--primary-color);
   }
   
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
   .stat-item {
-    margin-bottom: 1rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-5px);
   }
   
   .stat-item h3 {
-    font-size: 1rem;
-    color: var(--secondary-text-color);
-    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin: 0.5rem 0;
   }
   
   .stat-item p {
     font-size: 1.5rem;
-    color: var(--primary-color);
+    color: #4a90e2;
     font-weight: bold;
+    margin: 0;
+  }
+  
+  .stat-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .stat-button:hover {
+    background-color: #3a7bc8;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
   }
   
   .hospital-dashboard.loading,
@@ -81,7 +137,74 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px); /* Subtract the header height */
+    height: calc(100vh - 60px);
+    font-size: 1.2rem;
+    color: #4a90e2;
+  }
+  
+  .hospital-dashboard.error {
+    color: #e74c3c;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .recent-activities ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .recent-activities li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .recent-activities li:last-child {
+    border-bottom: none;
+  }
+  
+  .activity-time {
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+  }
+  
+  .activity-description {
+    font-size: 1rem;
+    color: var(--text-color);
+  }
+  
+  .view-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .view-all svg {
+    margin-left: 0.5rem;
+  }
+  
+  .hospital-dashboard.loading,
+  .hospital-dashboard.error,
+  .hospital-dashboard.pending {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 120px);
     text-align: center;
   }
   
@@ -94,7 +217,6 @@
   }
   
   .hospital-dashboard.pending h2 {
-    font-family: 'Poppins', sans-serif;
     color: var(--primary-color);
     margin-bottom: 1rem;
   }
@@ -106,10 +228,14 @@
   
   @media (max-width: 768px) {
     .dashboard-content {
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
     
     .hospital-dashboard {
-      padding-top: 100px; /* Adjust for smaller screens */
+      padding-top: 100px;
+    }
+    
+    .dashboard-header h1 {
+      font-size: 2rem;
     }
   }

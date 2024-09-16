@@ -42,6 +42,8 @@ const UserLogin = () => {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
+        localStorage.setItem('userName', data.name);
+        window.dispatchEvent(new Event('storage'));
         navigate('/dashboard');
       } else {
         setError(data.message || 'Invalid email or password');

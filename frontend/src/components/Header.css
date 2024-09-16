@@ -9,7 +9,7 @@
 }
 
 .header.light {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   color: #333333;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -36,21 +36,17 @@
 .logo {
   display: flex;
   align-items: center;
-  height: auto; /* Let the content determine the height */
 }
 
 .logo img {
-  height: 80px; /* Set a reasonable height for the logo */
-  width: auto;   /* Maintain aspect ratio */
-  max-width: 100%; /* Ensure the image doesn't overflow its container */
-  background: none; /* Ensure no background is applied */
+  height: 60px;
+  width: auto;
+  max-width: 100%;
+  background: none;
 }
 
 .nav {
   display: flex;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
 }
 
 .nav ul {
@@ -103,7 +99,7 @@
   display: none;
 }
 
-.header .header-actions .login-button {
+.login-button {
   border: 2px solid #4a90e2;
   background-color: transparent;
   color: #4a90e2;
@@ -115,67 +111,80 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.header .header-actions .login-button:hover {
+.login-button:hover {
   background-color: #4a90e2;
   color: #fff;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  margin-right: 10px;
+  font-weight: 500;
+  color: #4a90e2;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.logout-button:hover {
+  transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
   .nav {
-      display: flex;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 2rem;
-      flex-direction: column;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      transform: translateX(-100%);
-      z-index: 999;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
 
   .nav.open {
-      transform: translateX(0);
+    transform: translateX(0);
   }
 
   .nav ul {
-      flex-direction: column;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      width: 100%;
+    flex-direction: column;
   }
 
   .nav li {
-      margin: 0.5rem 0;
-      text-align: center;
+    margin: 1rem 0;
   }
 
   .menu-toggle {
-      display: block;
+    display: block;
   }
 
   .close-menu {
-      align-self: flex-end;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      color: inherit;
-      transition: transform 0.3s ease;
-      margin-bottom: 1rem;
-      display: none; /* Hidden by default */
-  }
-
-  .nav.open .close-menu {
-      display: block; /* Show when menu is open */
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
   }
 
   .header.dark .nav {
-      background-color: rgba(26, 26, 26, 0.9);
-      color: #ffffff;
+    background-color: rgba(26, 26, 26, 0.95);
+    color: #ffffff;
   }
 }
