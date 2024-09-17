@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --content-max-width: 1200px;
+  --content-padding: 2rem;
+  --primary-color: #4a90e2;
+  --background-color: #f0f0f0;
+  --text-color: #333333;
+  --secondary-text-color: #666666;
+  --feature-background: #e0e0e0;
+  --golden-color: #f7c948;
+  --gradient-color-1: #4a90e2;
+  --gradient-color-2: #007aff;
+}
+
+.diet-container {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.diet-content-wrapper {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.diet-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.diet-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.diet-hero-content p {
+  font-size: 1.1rem;
+  color: var(--secondary-text-color);
+}
+
+.diet-form {
+  background-color: var(--feature-background);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.diet-form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.diet-form-group svg {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.diet-form input,
+.diet-form select {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.diet-form input:focus,
+.diet-form select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.diet-cta-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.diet-cta-button:hover {
+  background-color: #3a7bc8;
+  transform: translateY(-2px);
+}
+
+.diet-cta-button:active {
+  transform: translateY(0);
+}
+
+.diet-plan {
+  background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+  color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.diet-plan h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.diet-plan-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.diet-meal-plan,
+.diet-exercise-plan {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.diet-meal-plan:hover,
+.diet-exercise-plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.diet-meal-plan h3,
+.diet-exercise-plan h3 {
+  color: var(--golden-color);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diet-meal-plan ul,
+.diet-exercise-plan ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.diet-meal-plan li,
+.diet-exercise-plan li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.diet-meal-plan li::before,
+.diet-exercise-plan li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--golden-color);
+}
+
+@media (max-width: 768px) {
+  .diet-content-wrapper {
+    padding: 0 1rem;
+  }
+
+  .diet-title {
+    font-size: 2rem;
+  }
+
+  .diet-plan-content {
+    flex-direction: column;
+  }
+
+  .diet-meal-plan,
+  .diet-exercise-plan {
+    margin-bottom: 1rem;
+  }
+}
