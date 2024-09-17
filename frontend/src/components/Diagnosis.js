@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Diagnosis.css";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const Diagnosis = () => {
   const [formData, setFormData] = useState({
@@ -18,14 +19,17 @@ const Diagnosis = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [diagnosis, setDiagnosis] = useState("");
+
+  const API_KEY = "AIzaSyCz3v3B_gJ21FIJm9xbwS1yfA0eZMPmwao"; // Replace with your actual API key
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
   useEffect(() => {
-    // Fetch user name from localStorage
     const userName = localStorage.getItem("userName");
     if (userName) {
       setFormData((prevState) => ({ ...prevState, name: userName }));
     }
-
     if (formData.dateOfBirth) {
       const birthDate = new Date(formData.dateOfBirth);
       const today = new Date();
@@ -54,24 +58,31 @@ const Diagnosis = () => {
     e.preventDefault();
     if (validateForm()) {
       setIsSubmitting(true);
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Form submitted:", formData);
+      try {
+        const diagnosis = await getDiagnosis();
+        setDiagnosis(diagnosis);
+      } catch (error) {
+        console.error("Error getting diagnosis:", error);
+        setErrorMessage("Failed to get diagnosis. Please try again.");
+      }
       setIsSubmitting(false);
-      setFormData({
-        name: "",
-        dateOfBirth: "",
-        age: "",
-        gender: "",
-        symptoms: "",
-        durationStart: "",
-        durationEnd: "",
-        medicalHistory: "",
-        currentMedications: "",
-        allergies: "",
-      });
-      setCurrentStep(1);
     }
+  };
+
+  const getDiagnosis = async () => {
+    const prompt = `Based on the following patient information, provide a possible diagnosis and recommendations:
+    Age: ${formData.age}
+    Gender: ${formData.gender}
+    Symptoms: ${formData.symptoms}
+    Duration: From ${formData.durationStart} to ${formData.durationEnd}
+    Medical History: ${formData.medicalHistory}
+    Current Medications: ${formData.currentMedications}
+    Allergies: ${formData.allergies}
+
+    Please provide a detailed diagnosis and recommendations.`;
+
+    const result = await model.generateContent(prompt);
+    return result.response.text();
   };
 
   const validateForm = () => {
@@ -145,98 +156,59 @@ const Diagnosis = () => {
     return true;
   };
 
+  const Progress = ({ step }) => {
+    return (
+      <div className="progress-bar">
+        <div className="progress" style={{ width: `${(step / 3) * 100}%` }}></div>
+      </div>
+    );
+  };
+
   return (
     <div className="diagnosis-container">
-      <h2 className="diagnosis-title">AI Diagnosis Form</h2>
-      <div className="progress-bar">
-        <div
-          className="progress"
-          style={{ width: `${(currentStep / 3) * 100}%` }}
-        ></div>
-      </div>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
+      <h1 className="diagnosis-title">AI Diagnosis Form</h1>
+      <Progress step={currentStep} />
       <form className="diagnosis-form" onSubmit={handleSubmit}>
         {currentStep === 1 && (
           <div className="form-section">
             <h3>Personal Information</h3>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="name">
-                Full Name:
-              </label>
+              <label className="diagnosis-label">Name</label>
               <input
                 className="diagnosis-input"
                 type="text"
-                id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
-                readOnly
               />
-              {errors.name && (
-                <span className="error-message">{errors.name}</span>
-              )}
+              {errors.name && <span className="error-message">{errors.name}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="dateOfBirth">
-                Date of Birth:
-              </label>
+              <label className="diagnosis-label">Date of Birth</label>
               <input
                 className="diagnosis-input"
                 type="date"
-                id="dateOfBirth"
                 name="dateOfBirth"
                 value={formData.dateOfBirth}
                 onChange={handleChange}
-                required
               />
-              {errors.dateOfBirth && (
-                <span className="error-message">{errors.dateOfBirth}</span>
-              )}
+              {errors.dateOfBirth && <span className="error-message">{errors.dateOfBirth}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="age">
-                Age:
-              </label>
-              <input
-                className="diagnosis-input"
-                type="number"
-                id="age"
-                name="age"
-                value={formData.age}
-                readOnly
-                required
-              />
-            </div>
-            <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="gender">
-                Gender:
-              </label>
+              <label className="diagnosis-label">Gender</label>
               <select
                 className="diagnosis-select"
-                id="gender"
                 name="gender"
                 value={formData.gender}
                 onChange={handleChange}
-                required
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-              {errors.gender && (
-                <span className="error-message">{errors.gender}</span>
-              )}
+              {errors.gender && <span className="error-message">{errors.gender}</span>}
             </div>
-            <button
-              type="button"
-              onClick={nextStep}
-              className="next-button"
-              disabled={!isStepValid()}
-            >
-              Next
-            </button>
           </div>
         )}
 
@@ -244,67 +216,37 @@ const Diagnosis = () => {
           <div className="form-section">
             <h3>Symptoms</h3>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="symptoms">
-                Symptoms:
-              </label>
+              <label className="diagnosis-label">Symptoms</label>
               <textarea
                 className="diagnosis-textarea"
-                id="symptoms"
                 name="symptoms"
                 value={formData.symptoms}
                 onChange={handleChange}
-                required
-              ></textarea>
-              {errors.symptoms && (
-                <span className="error-message">{errors.symptoms}</span>
-              )}
+                placeholder="Describe your symptoms"
+              />
+              {errors.symptoms && <span className="error-message">{errors.symptoms}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="durationStart">
-                Symptoms Start Date:
-              </label>
+              <label className="diagnosis-label">Start Date</label>
               <input
                 className="diagnosis-input"
                 type="date"
-                id="durationStart"
                 name="durationStart"
                 value={formData.durationStart}
                 onChange={handleChange}
-                required
               />
-              {errors.durationStart && (
-                <span className="error-message">{errors.durationStart}</span>
-              )}
+              {errors.durationStart && <span className="error-message">{errors.durationStart}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="durationEnd">
-                Symptoms End Date:
-              </label>
+              <label className="diagnosis-label">End Date</label>
               <input
                 className="diagnosis-input"
                 type="date"
-                id="durationEnd"
                 name="durationEnd"
                 value={formData.durationEnd}
                 onChange={handleChange}
-                required
               />
-              {errors.durationEnd && (
-                <span className="error-message">{errors.durationEnd}</span>
-              )}
-            </div>
-            <div className="button-group">
-              <button type="button" onClick={prevStep} className="prev-button">
-                Previous
-              </button>
-              <button
-                type="button"
-                onClick={nextStep}
-                className="next-button"
-                disabled={!isStepValid()}
-              >
-                Next
-              </button>
+              {errors.durationEnd && <span className="error-message">{errors.durationEnd}</span>}
             </div>
           </div>
         )}
@@ -313,70 +255,77 @@ const Diagnosis = () => {
           <div className="form-section">
             <h3>Medical History</h3>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="medicalHistory">
-                Medical History:
-              </label>
+              <label className="diagnosis-label">Medical History</label>
               <textarea
                 className="diagnosis-textarea"
-                id="medicalHistory"
                 name="medicalHistory"
                 value={formData.medicalHistory}
                 onChange={handleChange}
-                required
-              ></textarea>
-              {errors.medicalHistory && (
-                <span className="error-message">{errors.medicalHistory}</span>
-              )}
+                placeholder="Medical history"
+              />
+              {errors.medicalHistory && <span className="error-message">{errors.medicalHistory}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="currentMedications">
-                Current Medications:
-              </label>
+              <label className="diagnosis-label">Current Medications</label>
               <textarea
                 className="diagnosis-textarea"
-                id="currentMedications"
                 name="currentMedications"
                 value={formData.currentMedications}
                 onChange={handleChange}
-                required
-              ></textarea>
-              {errors.currentMedications && (
-                <span className="error-message">
-                  {errors.currentMedications}
-                </span>
-              )}
+                placeholder="Current medications"
+              />
+              {errors.currentMedications && <span className="error-message">{errors.currentMedications}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label" htmlFor="allergies">
-                Allergies:
-              </label>
+              <label className="diagnosis-label">Allergies</label>
               <textarea
                 className="diagnosis-textarea"
-                id="allergies"
                 name="allergies"
                 value={formData.allergies}
                 onChange={handleChange}
-                required
-              ></textarea>
-              {errors.allergies && (
-                <span className="error-message">{errors.allergies}</span>
-              )}
-            </div>
-            <div className="button-group">
-              <button type="button" onClick={prevStep} className="prev-button">
-                Previous
-              </button>
-              <button
-                className="diagnosis-submit-button"
-                type="submit"
-                disabled={isSubmitting || !isStepValid()}
-              >
-                {isSubmitting ? "Submitting..." : "Submit for Diagnosis"}
-              </button>
+                placeholder="Allergies"
+              />
+              {errors.allergies && <span className="error-message">{errors.allergies}</span>}
             </div>
           </div>
         )}
+
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
+
+        <div className="button-group">
+          {currentStep > 1 && (
+            <button className="prev-button" type="button" onClick={prevStep}>
+              Previous
+            </button>
+          )}
+          {currentStep < 3 && (
+            <button
+              className="next-button"
+              type="button"
+              onClick={nextStep}
+              disabled={!isStepValid()}
+            >
+              Next
+            </button>
+          )}
+          {currentStep === 3 && (
+            <button
+              className="diagnosis-submit-button"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Get Diagnosis"}
+            </button>
+          )}
+        </div>
       </form>
+
+      {diagnosis && (
+        <div className="diagnosis-result">
+          <h2>AI Diagnosis</h2>
+          <p>{diagnosis}</p>
+        </div>
+      )}
     </div>
   );
 };

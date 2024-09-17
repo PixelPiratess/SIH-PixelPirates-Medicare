@@ -15,9 +15,13 @@ import UnderConstruction from './components/UnderConstruction';
 import Diagnosis from "./components/Diagnosis";
 import Diet from "./components/Diet";
 import AppointmentBookingForm from "./components/AppointmentBookingForm";
-import "./App.css";
 import FirstAid from "./components/FirstAid";
 import DepressionTest from "./components/DepressionTest";
+import BloodDonation from "./components/Blooddonation";
+import DonationDashboard from "./components/DonationDashboard";
+import FinancialAid from "./components/FinancialAid";
+import OrganDonation from "./components/OrganDonation";
+import "./App.css";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -62,6 +66,10 @@ function App() {
               <Route path="/appointment-booking" element={<AppointmentBookingForm />} />
               <Route path="/first-aid" element={<FirstAid />} />
               <Route path="/depression-test" element={<DepressionTest />} />
+              <Route path="/blood-donation" element={<BloodDonation />} />
+              <Route path="/donation-dashboard" element={<DonationDashboard />} />
+              <Route path="/financial-aid" element={<FinancialAid />} />
+              <Route path="/organ-donation" element={<OrganDonation />} />
             </Routes>
           </main>
           <Footer />
