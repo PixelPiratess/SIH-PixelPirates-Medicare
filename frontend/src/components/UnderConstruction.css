@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lato:wght@300;400;700&display=swap');
+
+.under-construction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px); /* Adjust based on your header/footer height */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.content {
+  background-color: var(--feature-background);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+p {
+  font-size: 1.1rem;
+  color: var(--secondary-text-color);
+  margin-bottom: 1.5rem;
+}
+
+.update-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-text-color);
+}
+
+.tools-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+/* Dark mode styles */
+.dark-mode .under-construction {
+  background-color: var(--background-color);
+}
+
+.dark-mode .content {
+  background-color: var(--feature-background);
+}
+
+.dark-mode h1 {
+  color: var(--primary-color);
+}
+
+.dark-mode .update-info {
+  color: var(--secondary-text-color);
+}
+
+/* Add the floating animation from your home page */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.content {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .under-construction {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
