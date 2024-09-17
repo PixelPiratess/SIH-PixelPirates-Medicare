@@ -17,6 +17,7 @@ import Diet from "./components/Diet";
 import AppointmentBookingForm from "./components/AppointmentBookingForm";
 import "./App.css";
 import FirstAid from "./components/FirstAid";
+import DepressionTest from "./components/DepressionTest";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -60,6 +61,7 @@ function App() {
               <Route path="/diet" element={<Diet />} />
               <Route path="/appointment-booking" element={<AppointmentBookingForm />} />
               <Route path="/first-aid" element={<FirstAid />} />
+              <Route path="/depression-test" element={<DepressionTest />} />
             </Routes>
           </main>
           <Footer />
