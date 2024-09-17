@@ -297,6 +297,17 @@ h1, h2, h3 {
   color: var(--secondary-text-color);
 }
 
+.service-details a {
+  color: inherit; /* Use the same color as the parent text */
+  text-decoration: none; /* Remove underline */
+  cursor: pointer; /* Change cursor to indicate it's clickable */
+}
+
+.service-details a:hover {
+  text-decoration: underline; /* Add underline on hover for subtle indication */
+  color: #007aff;
+}
+
 /* Premium features section styles */
 .premium-features {
   padding: 4rem 0;
