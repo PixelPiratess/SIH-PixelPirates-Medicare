@@ -13,6 +13,7 @@ import HospitalDashboard from "./components/HospitalDashboard";
 import AdminDashboard from './components/AdminDashboard';
 import UnderConstruction from './components/UnderConstruction';
 import "./App.css";
+import FirstAid from "./components/FIrstAid";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -52,6 +53,7 @@ function App() {
                 element={<HospitalDashboard />} 
               />
               <Route path="/under-construction" element={<UnderConstruction/>} />
+              <Route path="/first-aid" element={<FirstAid/>} />
             </Routes>
           </main>
           <Footer />
