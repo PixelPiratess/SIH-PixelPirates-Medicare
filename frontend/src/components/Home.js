@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin, Droplet, TestTubeDiagonal, PillBottle, BrainCircuit,History, BotMessageSquare, User } from 'lucide-react';
+import { Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin, Droplet, TestTubeDiagonal, PillBottle, BrainCircuit,History, BotMessageSquare, User } from 'lucide-react';
 import { State, City } from 'country-state-city';
 import './Home.css';
 
@@ -65,40 +65,6 @@ const getServiceLink = (serviceId, detail) => {
   };
   
   return links[serviceId]?.[detail] || null;
-};
-
-const ServicesList = () => {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {services.map(service => (
-        <div key={service.id} className="bg-white shadow-md rounded-lg p-6">
-          <div className="flex items-center mb-4">
-            <div className="text-blue-500 mr-3">{service.icon}</div>
-            <h2 className="text-xl font-semibold">{service.title}</h2>
-          </div>
-          <ul className="space-y-2">
-            {service.details.map((detail, index) => (
-              <li key={index}>
-                {getServiceLink(service.id, detail) ? (
-                  <a
-                    href={getServiceLink(service.id, detail)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                    onClick={() => console.log(`Link clicked: ${getServiceLink(service.id, detail)}`)}
-                  >
-                    {detail}
-                  </a>
-                ) : (
-                  detail
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-  );
 };
 
 const hospitals = [
