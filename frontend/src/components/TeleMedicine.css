@@ -1,0 +1,179 @@
+.telemedicine-container {
+    max-width: var(--content-max-width);
+    margin: 80px auto;
+    padding: 2rem var(--content-padding);
+    font-family: 'Lato', sans-serif;
+    color: var(--text-color);
+  }
+  
+  .telemedicine-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .telemedicine-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .telemedicine-header p {
+    font-size: 1.1rem;
+    color: var(--secondary-text-color);
+  }
+  
+  .telemedicine-services h2,
+  .how-it-works h2,
+  .cta-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .service-item {
+    background-color: var(--feature-background);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  
+  .service-item:hover,
+  .service-item.selected {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service-item.selected {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+  
+  .service-item.selected .service-icon {
+    color: white;
+  }
+  
+  .service-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .service-item p {
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+  }
+  
+  .service-item.selected p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .how-it-works {
+    margin-top: 4rem;
+  }
+  
+  .steps {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  .step {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+  }
+  
+  .step-number {
+    background-color: var(--primary-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1rem;
+    font-weight: bold;
+  }
+  
+  .step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .step p {
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+  }
+  
+  .cta-section {
+    margin-top: 4rem;
+    text-align: center;
+    background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+    padding: 3rem;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .cta-section h2 {
+    color: white;
+  }
+  
+  .cta-section p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+  }
+  
+  .cta-button {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--golden-color);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .telemedicine-header h1 {
+      font-size: 2rem;
+    }
+  
+    .telemedicine-services h2,
+    .how-it-works h2,
+    .cta-section h2 {
+      font-size: 1.5rem;
+    }
+  
+    .steps {
+      flex-direction: column;
+    }
+  
+    .step {
+      margin-bottom: 1.5rem;
+    }
+  }

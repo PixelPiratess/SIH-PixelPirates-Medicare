@@ -21,6 +21,8 @@ import BloodDonation from "./components/Blooddonation";
 import DonationDashboard from "./components/DonationDashboard";
 import FinancialAid from "./components/FinancialAid";
 import OrganDonation from "./components/OrganDonation";
+import MedStore from "./components/MedStore";
+import TeleMedicine from "./components/TeleMedicine";
 import "./App.css";
 
 function App() {
@@ -70,6 +72,8 @@ function App() {
               <Route path="/donation-dashboard" element={<DonationDashboard />} />
               <Route path="/financial-aid" element={<FinancialAid />} />
               <Route path="/organ-donation" element={<OrganDonation />} />
+              <Route path="/medstore" element={<MedStore />} />
+              <Route path="/telemedicine" element={<TeleMedicine />} />
             </Routes>
           </main>
           <Footer />
