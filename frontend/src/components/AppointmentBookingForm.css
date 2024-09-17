@@ -1,0 +1,160 @@
+:root {
+  --primary-color: #4a90e2;
+  --secondary-color: #f0f4f8;
+  --text-color: #333;
+  --background-color: #ffffff;
+  --feature-background: #f9fafb;
+  --gradient-color-1: #4a90e2;
+  --gradient-color-2: #5cb3ff;
+  --error-color: #ff6b6b;
+  --success-color: #4caf50;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+}
+
+.appointment-container {
+  max-width: 800px;
+  margin: 10rem auto;
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 15px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 60px rgba(74, 144, 226, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.appointment-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 70%);
+  opacity: 0.1;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.appointment-title {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: var(--secondary-color);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.appointment-form {
+  background-color: var(--feature-background);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.appointment-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.appointment-label {
+  display: block;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.appointment-input,
+.appointment-select,
+.appointment-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--background-color);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.appointment-input:focus,
+.appointment-select:focus,
+.appointment-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.appointment-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.appointment-submit-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.appointment-submit-button:hover {
+  background-color: #3a7bc8;
+  transform: translateY(-2px);
+}
+
+.appointment-submit-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .appointment-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .appointment-form {
+    padding: 1.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.form-section {
+  animation: fadeIn 0.5s ease-in-out;
+}

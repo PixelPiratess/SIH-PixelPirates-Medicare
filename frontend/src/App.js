@@ -12,6 +12,9 @@ import HospitalSignup from "./components/HospitalSignup";
 import HospitalDashboard from "./components/HospitalDashboard";
 import AdminDashboard from './components/AdminDashboard';
 import UnderConstruction from './components/UnderConstruction';
+import Diagnosis from "./components/Diagnosis";
+import Diet from "./components/Diet";
+import AppointmentBookingForm from "./components/AppointmentBookingForm";
 import "./App.css";
 import FirstAid from "./components/FIrstAid";
 
@@ -53,7 +56,13 @@ function App() {
                 element={<HospitalDashboard />} 
               />
               <Route path="/under-construction" element={<UnderConstruction/>} />
+<<<<<<< HEAD
               <Route path="/first-aid" element={<FirstAid/>} />
+=======
+              <Route path="/diagnosis" element={<Diagnosis />} />
+              <Route path="/diet" element={<Diet />} />
+              <Route path="/appointment-booking" element={<AppointmentBookingForm />} />
+>>>>>>> dc387128dacd413aec23b1f154884c1f84399db1
             </Routes>
           </main>
           <Footer />

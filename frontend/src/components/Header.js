@@ -44,8 +44,8 @@ const HoverDropdownMenu2 = () => {
         <ul className="dropdown-menu1">
           <li class="drop-menu"><a  class="dmn" href='/under-construction'>Detailed Report</a></li>
           <li class="drop-menu"><a class="dmn" href='/under-construction'>Chat with Doctor</a></li>
-          <li class="drop-menu"><a class="dmn" href='/under-construction'>Direct Appointment Booking</a></li>
-          <li class="drop-menu"><a class="dmn" href='/under-construction'>Personalized Health/Diet Plan</a></li>
+          <li class="drop-menu"><a class="dmn" href='/appointment-booking'>Direct Appointment Booking</a></li>
+          <li class="drop-menu"><a class="dmn" href='/diet'>Personalized Health/Diet Plan</a></li>
         </ul>
       )}
     </li>
@@ -157,7 +157,7 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           )}
           <ul>
             <li><Link to="/" onClick={closeMenu}><Activity size={18} /> Home</Link></li>
-            <li><Link to='/under-construction' onClick={closeMenu}><Pill size={18} /> AI Diagnosis</Link></li>
+            <li><Link to='/diagnosis' onClick={closeMenu}><Pill size={18} /> AI Diagnosis</Link></li>
             {/* <li><Link to="/appointments" onClick={closeMenu}><Book size={18} /> Appointments</Link></li> */}
             <HoverDropdownMenu1/>
             <HoverDropdownMenu2/>
