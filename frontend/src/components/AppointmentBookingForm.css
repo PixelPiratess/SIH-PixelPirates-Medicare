@@ -1,0 +1,122 @@
+.appointment-form-container {
+  max-width: 42rem;
+  margin: auto;
+  margin-top: 100px;
+  color:var(--text-color);
+  margin-bottom: 10px;
+  padding: 1.5rem;
+  background-color: var(--background-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px var(--primary-color), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.appointment-form-container::before{
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 70%);
+    opacity: 0.1;
+    z-index: -1;
+    filter: blur(20px);
+}
+
+.form-title1 {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+.form-input1::placeholder
+{
+    color: var(--text-color);
+    opacity: 1;
+}
+
+.form-input1,
+.form-select1
+{
+  width: 85%;
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  background-color: var(--feature-background);
+  color: var(--text-color);
+}
+
+.form-input1:focus,
+.form-select1:focus,
+.form-textarea1:focus
+{
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+
+.input-with-icon {
+  position: relative;
+  color: var(--text-color);
+}
+
+/* .input-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color);
+}  */
+
+.form-textarea1 {
+  height: 6rem;
+  resize: vertical;
+  width: 100%;
+border-radius: 10px;
+font-family: 'Roboto', sans-serif;
+background-color: var(--feature-background);
+color: var(--text-color);
+}
+
+.form-textarea1::placeholder{
+ color: var(--text-color);
+}
+
+
+
+.submit-button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color:#3a7bc8;
+}
