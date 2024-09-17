@@ -1,3 +1,5 @@
+const Hospital = require('../models/Hospital'); // Adjust the path as needed
+
 exports.getStates = async (req, res) => {
     try {
       const states = await Hospital.distinct('state');

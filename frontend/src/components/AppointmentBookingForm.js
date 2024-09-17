@@ -208,7 +208,7 @@ const AppointmentBookingForm = () => {
             >
               <option value="">Select Hospital</option>
               {hospitals.map((hospital) => (
-                <option key={hospital._id} value={hospital._id}>{hospital.hospitalName}</option>
+                <option key={hospital._id} value={hospital._id}>{hospital.name}</option>
               ))}
             </select>
           </div>
