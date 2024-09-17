@@ -20,6 +20,12 @@ const Diagnosis = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    // Fetch user name from localStorage
+    const userName = localStorage.getItem("userName");
+    if (userName) {
+      setFormData((prevState) => ({ ...prevState, name: userName }));
+    }
+
     if (formData.dateOfBirth) {
       const birthDate = new Date(formData.dateOfBirth);
       const today = new Date();
@@ -165,6 +171,7 @@ const Diagnosis = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                readOnly
               />
               {errors.name && (
                 <span className="error-message">{errors.name}</span>
@@ -226,6 +233,7 @@ const Diagnosis = () => {
               type="button"
               onClick={nextStep}
               className="next-button"
+              disabled={!isStepValid()}
             >
               Next
             </button>
@@ -293,6 +301,7 @@ const Diagnosis = () => {
                 type="button"
                 onClick={nextStep}
                 className="next-button"
+                disabled={!isStepValid()}
               >
                 Next
               </button>
