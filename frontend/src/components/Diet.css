@@ -46,7 +46,7 @@
 }
 
 .diet-form {
-  background-color: var(--background-color);
+  background-color: var(--feature-background);
   border-radius: 10px;
   padding: 2rem;
   margin-bottom: 2rem;
@@ -175,6 +175,64 @@
   color: var(--golden-color);
 }
 
+/* BMI Meter Styles */
+.bmi-meter {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.bmi-display {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.bmi-value {
+  font-size: 3rem;
+  color: var(--golden-color);
+}
+
+.bmi-label {
+  font-size: 1rem;
+  color: var(--secondary-text-color);
+}
+
+.bmi-gauge {
+  width: 200px;
+  height: 100px;
+  background: conic-gradient(
+    from 180deg,
+    #ff4d4d 0deg 60deg,
+    #ffa500 60deg 120deg,
+    #4caf50 120deg 180deg
+  );
+  border-radius: 100px 100px 0 0;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.bmi-needle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  height: 100px;
+  background-color: white;
+  transform-origin: bottom center;
+  transition: transform 0.5s ease-out;
+}
+
+.bmi-category {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: var(--golden-color);
+}
+
 @media (max-width: 768px) {
   .diet-content-wrapper {
     padding: 0 1rem;
@@ -191,5 +249,14 @@
   .diet-meal-plan,
   .diet-exercise-plan {
     margin-bottom: 1rem;
+  }
+
+  .bmi-gauge {
+    width: 150px;
+    height: 75px;
+  }
+
+  .bmi-needle {
+    height: 75px;
   }
 }

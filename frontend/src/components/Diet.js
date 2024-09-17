@@ -12,6 +12,7 @@ const Diet = () => {
   });
 
   const [showPlan, setShowPlan] = useState(false);
+  const [bmi, setBmi] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,8 +22,27 @@ const Diet = () => {
     }));
   };
 
+  const calculateBMI = () => {
+    const weightInKg = parseFloat(userInfo.weight);
+    const heightInM = parseFloat(userInfo.height) / 100;
+    if (weightInKg > 0 && heightInM > 0) {
+      const bmiValue = weightInKg / (heightInM * heightInM);
+      return bmiValue.toFixed(1);
+    }
+    return null;
+  };
+
+  const getBMICategory = (bmi) => {
+    if (bmi < 18.5) return 'Underweight';
+    if (bmi < 25) return 'Normal weight';
+    if (bmi < 30) return 'Overweight';
+    return 'Obese';
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const calculatedBMI = calculateBMI();
+    setBmi(calculatedBMI);
     setShowPlan(true);
   };
 
@@ -163,6 +183,18 @@ const Diet = () => {
           <div className="diet-plan">
             <h2>Your Personalized Diet Plan</h2>
             <p>Hello {userInfo.name}, here's your customized plan to {userInfo.goal}:</p>
+            
+            <div className="bmi-meter">
+              <div className="bmi-display">
+                <div className="bmi-value">{bmi}</div>
+                <div className="bmi-label">BMI</div>
+              </div>
+              <div className="bmi-gauge">
+                <div className="bmi-needle" style={{ transform: `rotate(${(bmi - 10) * 9}deg)` }}></div>
+              </div>
+              <div className="bmi-category">{getBMICategory(bmi)}</div>
+            </div>
+
             <div className="diet-plan-content">
               <div className="diet-meal-plan">
                 <h3><Utensils size={20} /> Daily Meal Plan</h3>
