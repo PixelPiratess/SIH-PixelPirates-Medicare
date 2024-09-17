@@ -11,7 +11,13 @@ import HospitalLogin from "./components/HospitalLogin";
 import HospitalSignup from "./components/HospitalSignup";
 import HospitalDashboard from "./components/HospitalDashboard";
 import AdminDashboard from './components/AdminDashboard';
+import UnderConstruction from './components/UnderConstruction';
+import Diagnosis from "./components/Diagnosis";
+import Diet from "./components/Diet";
+import AppointmentBookingForm from "./components/AppointmentBookingForm";
 import "./App.css";
+import FirstAid from "./components/FirstAid";
+import DepressionTest from "./components/DepressionTest";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -46,10 +52,16 @@ function App() {
               <Route path="/hospital-login" element={<HospitalLogin />} />
               <Route path="/hospital-signup" element={<HospitalSignup />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
-              <Route
-                path="/hospital-dashboard"
-                element={<HospitalDashboard />}
+              <Route 
+                path="/hospital-dashboard" 
+                element={<HospitalDashboard />} 
               />
+              <Route path="/under-construction" element={<UnderConstruction/>} />
+              <Route path="/diagnosis" element={<Diagnosis />} />
+              <Route path="/diet" element={<Diet />} />
+              <Route path="/appointment-booking" element={<AppointmentBookingForm />} />
+              <Route path="/first-aid" element={<FirstAid />} />
+              <Route path="/depression-test" element={<DepressionTest />} />
             </Routes>
           </main>
           <Footer />

@@ -1,22 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin } from 'lucide-react';
+import { Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin, Droplet, TestTubeDiagonal, PillBottle, BrainCircuit,History, BotMessageSquare, User } from 'lucide-react';
 import { State, City } from 'country-state-city';
 import './Home.css';
 
 const services = [
-  { id: 1, title: 'General Health', icon: <Activity />, details: ['Service A', 'Service B', 'Service C'] },
-  { id: 2, title: 'Specialized Care', icon: <Users />, details: ['Service D', 'Service E', 'Service F'] },
-  { id: 3, title: 'Emergency Services', icon: <Clock />, details: ['Service G', 'Service H', 'Service I'] },
-  { id: 4, title: 'Surgical Procedures', icon: <Hospital />, details: ['Service J', 'Service K', 'Service L'] },
-  { id: 5, title: 'Diagnostic Tests', icon: <Activity />, details: ['Service M', 'Service N', 'Service O'] },
-  { id: 6, title: 'Pediatric Care', icon: <Users />, details: ['Service P', 'Service Q', 'Service R'] },
-  { id: 7, title: 'Geriatric Care', icon: <Clock />, details: ['Service S', 'Service T', 'Service U'] },
-  { id: 8, title: 'Orthopedic Services', icon: <Hospital />, details: ['Service V', 'Service W', 'Service X'] },
-  { id: 9, title: 'Cardiology', icon: <Activity />, details: ['Service Y', 'Service Z', 'Service AA'] },
-  { id: 10, title: 'Neurology', icon: <Users />, details: ['Service BB', 'Service CC', 'Service DD'] },
-  { id: 11, title: 'Oncology', icon: <Clock />, details: ['Service EE', 'Service FF', 'Service GG'] },
-  { id: 12, title: 'Dermatology', icon: <Hospital />, details: ['Service HH', 'Service II', 'Service JJ'] },
+  { id: 1, title: 'Medical History', icon: <History />, details: ['Past Diagnosis', 'Past Reports', 'Past Treatments '] },
+  { id: 2, title: 'AI Diagnosis', icon: <BotMessageSquare />, details: ['AI Diagnosis (Perliminary)'] },
+  { id: 3, title: 'Government Schemes', icon: <Users />, details: [
+      'Ayushman Bharat - National Health Protection Mission (AB-NHPS)',
+      'Central Government Health Scheme (CGHS)',
+      'Rashtriya Swasthya Bima Yojana (RSBY)',
+      'Pradhan Mantri Jan Arogya Yojana (PMJAY)',
+      'National Health Mission (NHM)',
+      'And benefits of various other central and state government schemes.'
+    ] 
+  },
+  { id: 4, title: 'Donations', icon: <Droplet />, details: ['Blood Donation', 'Organ Donation', 'Financial Aid'] },
+  { id: 5, title: 'Labs', icon: <TestTubeDiagonal />, details: ['Schedule Tests', 'View Report'] },
+  { id: 6, title: 'Telemedecine', icon: <PillBottle />, details: ['Order Medicines Online'] },
+  { id: 7, title: 'Mental Health', icon: <BrainCircuit />, details: ['Are You Depressed? Find out about your mental health status.'] },
+  { id: 8, title: 'For Organisations', icon: <Hospital />, details: ['Hospital Login', 'Register Your Hosiptal'] },
+  { id: 9, title: 'About Us', icon: <User />, details: ['About Us'] },
 ];
+
+const getServiceLink = (serviceId, detail) => {
+  const links = {
+    1: {
+      'Past Diagnosis': '/under-construction',
+      'Past Reports': '/under-construction',
+      'Past Treatments': '/under-construction'
+    },
+    2: {
+      'AI Diagnosis (Perliminary)': '/under-construction'
+    },
+    6: {
+      'Order Medicines Online': '/under-construction'
+    },
+    4: {
+      'Blood Donation': '/under-construction',
+      'Organ Donation': '/under-construction',
+      'Financial Aid': '/under-construction'
+    },
+    5: {
+      'Schedule Tests': '/under-construction',
+      'View Report': '/under-construction'
+      },
+    3: {
+      'Ayushman Bharat - National Health Protection Mission (AB-NHPS)': 'https://abdm.gov.in/',
+      'Central Government Health Scheme (CGHS)': 'https://cghs.gov.in/',
+      'Rashtriya Swasthya Bima Yojana (RSBY)': 'https://www.india.gov.in/spotlight/rashtriya-swasthya-bima-yojana',
+      'Pradhan Mantri Jan Arogya Yojana (PMJAY)': 'https://pmjay.gov.in/',
+      'National Health Mission (NHM)': 'https://nhm.gov.in/',
+    },
+    7: {
+      'Are You Depressed? Find out about your mental health status.': '/under-construction' 
+    },
+    8: {
+      'Hospital Login': '/hospital-login',
+      'Register Your Hosiptal': '/hospital-signup'
+      },
+    9: {
+      'About Us': '/'
+    }
+  };
+  
+  return links[serviceId]?.[detail] || null;
+};
 
 const hospitals = [
   { id: 1, name: 'City Hospital', location: 'Mumbai, Maharashtra', city: 'Mumbai', state: 'Maharashtra' },
@@ -135,30 +184,43 @@ const Home = () => {
         </section>
 
         <section className="services">
-          <h2>Services</h2>
-          <div className="services-container">
-            <div className="services-grid">
-              {services.map((service) => (
-                <div 
-                  key={service.id} 
-                  className={`service-item ${selectedService === service.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedService(service.id)}
-                >
-                  <div className="service-header">
-                    {service.icon}
-                    <h3>{service.title}</h3>
-                  </div>
+        <h2>Services</h2>
+        <div className="services-container">
+          <div className="services-grid">
+            {services.map((service) => (
+              <div 
+                key={service.id} 
+                className={`service-item ${selectedService === service.id ? 'selected' : ''}`}
+                onClick={() => setSelectedService(service.id)}
+              >
+                <div className="service-header">
+                  {service.icon}
+                  <h3>{service.title}</h3>
                 </div>
-              ))}
-            </div>
-            <div className="service-details">
-              <h3>{services.find(service => service.id === selectedService)?.title}</h3>
-              {services.find(service => service.id === selectedService)?.details.map((detail, index) => (
-                <p key={index}>{detail}</p>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
+          <div className="service-details">
+            <h3>{services.find(service => service.id === selectedService)?.title}</h3>
+            {services.find(service => service.id === selectedService)?.details.map((detail, index) => (
+              <p key={index}>
+                {getServiceLink(selectedService, detail) ? (
+                  <a
+                    href={getServiceLink(selectedService, detail)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="scheme-link"
+                  >
+                    {detail}
+                  </a>
+                ) : (
+                  detail
+                )}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
 
         <section className="premium-features">
           <div className="premium-heading">

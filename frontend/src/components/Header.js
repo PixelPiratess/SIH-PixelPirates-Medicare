@@ -18,10 +18,10 @@ const HoverDropdownMenu1 = () => {
       </a>
       {isHovered && (
         <ul className="dropdown-menu1">
-          <li class="drop-menu"><a  class="dmn" href="/">Medical History</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Telemedicine</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Doctor Consultation</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Schedule Test</a></li>
+          <li class="drop-menu"><a  class="dmn" href='/under-construction'>Medical History</a></li>
+          <li class="drop-menu"><a class="dmn" href='/under-construction'>Telemedicine</a></li>
+          <li class="drop-menu"><a class="dmn" href='/under-construction'>Doctor Consultation</a></li>
+          <li class="drop-menu"><a class="dmn" href='/under-construction'>Schedule Test</a></li>
         </ul>
       )}
     </li>
@@ -42,10 +42,10 @@ const HoverDropdownMenu2 = () => {
       </a>
       {isHovered && (
         <ul className="dropdown-menu1">
-          <li class="drop-menu"><a  class="dmn" href="/">Detailed Report</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Chat with Doctor</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Direct Appointment Booking</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Personalized Health/Diet Plan</a></li>
+          <li class="drop-menu"><a  class="dmn" href='/under-construction'>Detailed Report</a></li>
+          <li class="drop-menu"><a class="dmn" href='/under-construction'>Chat with Doctor</a></li>
+          <li class="drop-menu"><a class="dmn" href='/appointment-booking'>Direct Appointment Booking</a></li>
+          <li class="drop-menu"><a class="dmn" href='/diet'>Personalized Health/Diet Plan</a></li>
         </ul>
       )}
     </li>
@@ -66,11 +66,11 @@ const HoverDropdownMenu3 = () => {
       </a>
       {isHovered && (
         <ul className="dropdown-menu1">
-          <li class="drop-menu"><a  class="dmn" href="/">Donations</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Basic First Aid</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Government Schemes</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">Are we Depressed?</a></li>
-          <li class="drop-menu"><a class="dmn" href="/">About us</a></li>
+          <li class="drop-menu"><a  class="dmn" href='/under-construction'>Donations</a></li>
+          <li class="drop-menu"><a class="dmn" href='/first-aid'>Basic First Aid</a></li>
+          <li class="drop-menu"><a class="dmn" href='/under-construction'>Government Schemes</a></li>
+          <li class="drop-menu"><a class="dmn" href='/depression-test'>Are You Depressed?</a></li>
+          <li class="drop-menu"><a class="dmn" href='/under-construction'>About us</a></li>
         </ul>
       )}
     </li>
@@ -157,7 +157,7 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           )}
           <ul>
             <li><Link to="/" onClick={closeMenu}><Activity size={18} /> Home</Link></li>
-            <li><Link to="/diagnosis" onClick={closeMenu}><Pill size={18} /> AI Diagnosis</Link></li>
+            <li><Link to='/diagnosis' onClick={closeMenu}><Pill size={18} /> AI Diagnosis</Link></li>
             {/* <li><Link to="/appointments" onClick={closeMenu}><Book size={18} /> Appointments</Link></li> */}
             <HoverDropdownMenu1/>
             <HoverDropdownMenu2/>
