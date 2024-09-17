@@ -56,13 +56,9 @@ function App() {
                 element={<HospitalDashboard />} 
               />
               <Route path="/under-construction" element={<UnderConstruction/>} />
-<<<<<<< HEAD
-              <Route path="/first-aid" element={<FirstAid/>} />
-=======
               <Route path="/diagnosis" element={<Diagnosis />} />
               <Route path="/diet" element={<Diet />} />
               <Route path="/appointment-booking" element={<AppointmentBookingForm />} />
->>>>>>> dc387128dacd413aec23b1f154884c1f84399db1
             </Routes>
           </main>
           <Footer />
