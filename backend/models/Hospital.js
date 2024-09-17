@@ -13,6 +13,16 @@ const doctorSchema = new mongoose.Schema({
   }
 });
 
+const appointmentSchema = new mongoose.Schema({
+  fullName: String,
+  email: String,
+  phoneNumber: String,
+  date: Date,
+  time: String,
+  doctor: String,
+  additionalMessage: String
+}, { timestamps: true });
+
 const hospitalSchema = new mongoose.Schema({
   hospitalName: {
     type: String,

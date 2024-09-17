@@ -87,11 +87,18 @@ const AppointmentBookingForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (Object.values(formData).every(value => value !== '')) {
-      console.log('Form submitted:', formData);
-      // Handle form submission logic here
+      try {
+        const response = await axios.post(`${API_BASE_URL}/book-appointment/${formData.hospital}`, formData);
+        console.log('Appointment booked:', response.data);
+        alert('Appointment booked successfully!');
+        // Reset form or redirect user
+      } catch (error) {
+        console.error('Error booking appointment:', error);
+        alert('Failed to book appointment. Please try again.');
+      }
     } else {
       alert('Please fill in all fields before submitting.');
     }

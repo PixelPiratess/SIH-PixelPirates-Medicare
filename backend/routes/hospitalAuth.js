@@ -193,6 +193,28 @@ router.delete('/remove-doctor/:id', auth, async (req, res) => {
   }
 });
 
+// Book an appointment
+router.post('/book-appointment/:hospitalId', async (req, res) => {
+  try {
+    const { hospitalId } = req.params;
+    const appointmentData = req.body;
+
+    const hospital = await Hospital.findById(hospitalId);
+
+    if (!hospital) {
+      return res.status(404).json({ message: 'Hospital not found' });
+    }
+
+    hospital.appointments.push(appointmentData);
+    await hospital.save();
+
+    res.status(201).json({ message: 'Appointment booked successfully' });
+  } catch (error) {
+    console.error('Error booking appointment:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 router.get('/states', hospitalController.getStates);
 router.get('/cities/:state', hospitalController.getCities);
 router.get('/hospitals/:city', hospitalController.getHospitals);
