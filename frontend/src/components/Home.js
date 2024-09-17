@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin } from 'lucide-react';
+import { Activity, Users, Clock, Hospital, Stethoscope, Heart, Calendar, MapPin, Droplet, TestTubeDiagonal, PillBottle, BrainCircuit,History, BotMessageSquare, User } from 'lucide-react';
 import { State, City } from 'country-state-city';
 import './Home.css';
 
 const services = [
-  { id: 1, title: 'Medical History', icon: <Activity />, details: ['Past Diagnosis', 'Past Reports', 'Past Treatments '] },
-  { id: 2, title: 'AI Diagnosis', icon: <Users />, details: ['AI Diagnosis (Perliminary)'] },
+  { id: 1, title: 'Medical History', icon: <History />, details: ['Past Diagnosis', 'Past Reports', 'Past Treatments '] },
+  { id: 2, title: 'AI Diagnosis', icon: <BotMessageSquare />, details: ['AI Diagnosis (Perliminary)'] },
   { id: 3, title: 'Government Schemes', icon: <Users />, details: [
       'Ayushman Bharat - National Health Protection Mission (AB-NHPS)',
       'Central Government Health Scheme (CGHS)',
@@ -15,12 +15,12 @@ const services = [
       'And benefits of various other central and state government schemes.'
     ] 
   },
-  { id: 4, title: 'Donations', icon: <Hospital />, details: ['Blood Donation', 'Organ Donation', 'Financial Aid'] },
-  { id: 5, title: 'Labs', icon: <Activity />, details: ['Schedule Tests', 'View Report'] },
-  { id: 6, title: 'Telemedecine', icon: <Clock />, details: ['Order Medicines Online'] },
-  { id: 7, title: 'Mental Health', icon: <Clock />, details: ['Are You Depressed? Find out about your mental health status.'] },
+  { id: 4, title: 'Donations', icon: <Droplet />, details: ['Blood Donation', 'Organ Donation', 'Financial Aid'] },
+  { id: 5, title: 'Labs', icon: <TestTubeDiagonal />, details: ['Schedule Tests', 'View Report'] },
+  { id: 6, title: 'Telemedecine', icon: <PillBottle />, details: ['Order Medicines Online'] },
+  { id: 7, title: 'Mental Health', icon: <BrainCircuit />, details: ['Are You Depressed? Find out about your mental health status.'] },
   { id: 8, title: 'For Organisations', icon: <Hospital />, details: ['Hospital Login', 'Register Your Hosiptal'] },
-  { id: 9, title: 'About Us', icon: <Activity />, details: ['About Us'] },
+  { id: 9, title: 'About Us', icon: <User />, details: ['About Us'] },
 ];
 
 const getServiceLink = (serviceId, detail) => {
