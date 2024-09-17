@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, List, Film, Bandage, Flame, Activity, Droplets, Slice, icons, flame, LifeBuoy, Bone, HeartPulse, PlaneLanding, BriefcaseMedical, SquareActivity, Link } from 'lucide-react';
+import { Flame, Droplets, Slice, LifeBuoy, Bone, HeartPulse, PlaneLanding, BriefcaseMedical, SquareActivity } from 'lucide-react';
 import './FirstAid.css';
 
 const firstAidData = {
