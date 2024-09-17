@@ -26,24 +26,24 @@ const services = [
 const getServiceLink = (serviceId, detail) => {
   const links = {
     1: {
-      'Past Diagnosis': 'https://example.com/past-diagnosis',
-      'Past Reports': 'https://example.com/past-reports',
-      'Past Treatments': 'https://example.com/past-treatments'
+      'Past Diagnosis': '/under-construction',
+      'Past Reports': '/under-construction',
+      'Past Treatments': '/under-construction'
     },
     2: {
-      'AI Diagnosis (Perliminary)': '/'
+      'AI Diagnosis (Perliminary)': '/under-construction'
     },
     6: {
-      'Order Medicines Online': '/'
+      'Order Medicines Online': '/under-construction'
     },
     4: {
-      'Blood Donation': '/',
-      'Organ Donation': '/',
-      'Financial Aid': '/'
+      'Blood Donation': '/under-construction',
+      'Organ Donation': '/under-construction',
+      'Financial Aid': '/under-construction'
     },
     5: {
-      'Schedule Tests': '/',
-      'View Report': '/'
+      'Schedule Tests': '/under-construction',
+      'View Report': '/under-construction'
       },
     3: {
       'Ayushman Bharat - National Health Protection Mission (AB-NHPS)': 'https://abdm.gov.in/',
@@ -53,11 +53,11 @@ const getServiceLink = (serviceId, detail) => {
       'National Health Mission (NHM)': 'https://nhm.gov.in/',
     },
     7: {
-      'Are You Depressed? Find out about your mental health status.': '/' 
+      'Are You Depressed? Find out about your mental health status.': '/under-construction' 
     },
     8: {
-      'Hospital Login': '/',
-      'Register Your Hosiptal': '/'
+      'Hospital Login': '/hospital-login',
+      'Register Your Hosiptal': '/hospital-signup'
       },
     9: {
       'About Us': '/'
