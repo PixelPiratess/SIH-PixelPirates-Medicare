@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Hospital, Mail, Phone, Building, User } from 'lucide-react';
+import { Hospital, Mail, Phone, Building, User, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './HospitalSignup.css';
 
@@ -8,7 +8,8 @@ const HospitalSignup = () => {
     hospitalName: '',
     email: '',
     phone: '',
-    address: '',
+    state: '',
+    city: '',
     adminName: '',
     password: '',
     confirmPassword: '',
@@ -33,8 +34,12 @@ const HospitalSignup = () => {
       setError('Phone number must be 10 digits');
       return false;
     }
-    if (!formData.address.trim()) {
-      setError('Address is required');
+    if (!formData.state.trim()) {
+      setError('State is required');
+      return false;
+    }
+    if (!formData.city.trim()) {
+      setError('City is required');
       return false;
     }
     if (!formData.adminName.trim()) {
@@ -126,12 +131,23 @@ const HospitalSignup = () => {
             />
           </div>
           <div className="input-group">
-            <Building size={20} />
+            <MapPin size={20} />
             <input
               type="text"
-              name="address"
-              placeholder="Hospital Address"
-              value={formData.address}
+              name="state"
+              placeholder="State"
+              value={formData.state}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <MapPin size={20} />
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              value={formData.city}
               onChange={handleChange}
               required
             />

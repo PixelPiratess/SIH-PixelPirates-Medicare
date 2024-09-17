@@ -7,7 +7,38 @@
     --secondary-text-color: #666666;
     --border-color: #e0e0e0;
   }
+  .add-doctor-form {
+    display: flex;
+    margin-bottom: 20px;
+  }
   
+  .add-doctor-form input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .add-doctor-form button {
+    padding: 5px 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .doctor-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .remove-doctor {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ff4d4f;
+  }
   .hospital-dashboard {
     padding-top: 120px;
     min-height: calc(100vh - 120px);

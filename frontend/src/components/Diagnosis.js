@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
 import "./Diagnosis.css";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -11,6 +10,7 @@ const Diagnosis = () => {
     gender: "",
     symptoms: "",
     durationStart: "",
+    durationEnd: "",
     medicalHistory: "",
     currentMedications: "",
     allergies: "",
@@ -21,7 +21,7 @@ const Diagnosis = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
 
-  const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
+  const API_KEY = "AIzaSyCz3v3B_gJ21FIJm9xbwS1yfA0eZMPmwao"; // Replace with your actual API key
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
@@ -70,50 +70,19 @@ const Diagnosis = () => {
   };
 
   const getDiagnosis = async () => {
-    const prompt = `You are an expert doctor with extensive medical knowledge and experience across all specialties. Based on the following patient information, provide a detailed analysis:
+    const prompt = `Based on the following patient information, provide a possible diagnosis and recommendations:
+    Age: ${formData.age}
+    Gender: ${formData.gender}
+    Symptoms: ${formData.symptoms}
+    Duration: From ${formData.durationStart} to ${formData.durationEnd}
+    Medical History: ${formData.medicalHistory}
+    Current Medications: ${formData.currentMedications}
+    Allergies: ${formData.allergies}
 
-Patient Information:
-Age: ${formData.age}
-Gender: ${formData.gender}
-Symptoms: ${formData.symptoms}
-Duration: Since ${formData.durationStart}
-Medical History: ${formData.medicalHistory}
-Current Medications: ${formData.currentMedications}
-Allergies: ${formData.allergies}
-
-Please provide your analysis in the following format:
-
-## Patient Analysis:
-
-**1. Summary of Symptoms:**
-[Provide a concise summary of the patient's symptoms and their duration]
-
-**2. Possible Diagnosis:**
-[List and briefly explain the most likely diagnoses based on the symptoms and patient information]
-
-**3. Recommendations:**
-[Provide detailed recommendations for further tests, treatments, or lifestyle changes]
-
-**4. Additional Information:**
-[Include any additional information or considerations for the patient]
-
-## Caution:
-This analysis is for informational purposes only and should not be considered a substitute for professional medical advice. It's crucial to consult a doctor for proper diagnosis and treatment.
-
-Ensure your response is comprehensive, professional, and tailored to the patient's specific situation. Use markdown formatting for better readability.`;
+    Please provide a detailed diagnosis and recommendations.`;
 
     const result = await model.generateContent(prompt);
-    const response = result.response.text();
-
-    // Check if the response is related to medical diagnosis
-    if (
-      !response.toLowerCase().includes("diagnosis") ||
-      !response.toLowerCase().includes("symptoms")
-    ) {
-      return "I apologize, but I can only provide information related to medical diagnoses. If you have a medical concern, please provide relevant symptoms and patient information for a proper analysis.";
-    }
-
-    return response;
+    return result.response.text();
   };
 
   const validateForm = () => {
@@ -140,6 +109,10 @@ Ensure your response is comprehensive, professional, and tailored to the patient
       }
       if (!formData.durationStart) {
         newErrors.durationStart = "Start date is required";
+        isValid = false;
+      }
+      if (!formData.durationEnd) {
+        newErrors.durationEnd = "End date is required";
         isValid = false;
       }
     } else if (currentStep === 3) {
@@ -176,7 +149,9 @@ Ensure your response is comprehensive, professional, and tailored to the patient
     if (currentStep === 1) {
       return formData.name && formData.dateOfBirth && formData.gender;
     } else if (currentStep === 2) {
-      return formData.symptoms && formData.durationStart;
+      return (
+        formData.symptoms && formData.durationStart && formData.durationEnd
+      );
     }
     return true;
   };
@@ -184,10 +159,7 @@ Ensure your response is comprehensive, professional, and tailored to the patient
   const Progress = ({ step }) => {
     return (
       <div className="progress-bar">
-        <div
-          className="progress"
-          style={{ width: `${(step / 3) * 100}%` }}
-        ></div>
+        <div className="progress" style={{ width: `${(step / 3) * 100}%` }}></div>
       </div>
     );
   };
@@ -209,9 +181,7 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 value={formData.name}
                 onChange={handleChange}
               />
-              {errors.name && (
-                <span className="error-message">{errors.name}</span>
-              )}
+              {errors.name && <span className="error-message">{errors.name}</span>}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Date of Birth</label>
@@ -222,9 +192,7 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 value={formData.dateOfBirth}
                 onChange={handleChange}
               />
-              {errors.dateOfBirth && (
-                <span className="error-message">{errors.dateOfBirth}</span>
-              )}
+              {errors.dateOfBirth && <span className="error-message">{errors.dateOfBirth}</span>}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Gender</label>
@@ -239,9 +207,7 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-              {errors.gender && (
-                <span className="error-message">{errors.gender}</span>
-              )}
+              {errors.gender && <span className="error-message">{errors.gender}</span>}
             </div>
           </div>
         )}
@@ -258,14 +224,10 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 onChange={handleChange}
                 placeholder="Describe your symptoms"
               />
-              {errors.symptoms && (
-                <span className="error-message">{errors.symptoms}</span>
-              )}
+              {errors.symptoms && <span className="error-message">{errors.symptoms}</span>}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label">
-                When did the symptoms start?
-              </label>
+              <label className="diagnosis-label">Start Date</label>
               <input
                 className="diagnosis-input"
                 type="date"
@@ -273,9 +235,18 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 value={formData.durationStart}
                 onChange={handleChange}
               />
-              {errors.durationStart && (
-                <span className="error-message">{errors.durationStart}</span>
-              )}
+              {errors.durationStart && <span className="error-message">{errors.durationStart}</span>}
+            </div>
+            <div className="diagnosis-form-group">
+              <label className="diagnosis-label">End Date</label>
+              <input
+                className="diagnosis-input"
+                type="date"
+                name="durationEnd"
+                value={formData.durationEnd}
+                onChange={handleChange}
+              />
+              {errors.durationEnd && <span className="error-message">{errors.durationEnd}</span>}
             </div>
           </div>
         )}
@@ -290,11 +261,9 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 name="medicalHistory"
                 value={formData.medicalHistory}
                 onChange={handleChange}
-                placeholder="Any previous medical conditions or surgeries"
+                placeholder="Medical history"
               />
-              {errors.medicalHistory && (
-                <span className="error-message">{errors.medicalHistory}</span>
-              )}
+              {errors.medicalHistory && <span className="error-message">{errors.medicalHistory}</span>}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Current Medications</label>
@@ -303,13 +272,9 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 name="currentMedications"
                 value={formData.currentMedications}
                 onChange={handleChange}
-                placeholder="List any medications you're currently taking"
+                placeholder="Current medications"
               />
-              {errors.currentMedications && (
-                <span className="error-message">
-                  {errors.currentMedications}
-                </span>
-              )}
+              {errors.currentMedications && <span className="error-message">{errors.currentMedications}</span>}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Allergies</label>
@@ -318,11 +283,9 @@ Ensure your response is comprehensive, professional, and tailored to the patient
                 name="allergies"
                 value={formData.allergies}
                 onChange={handleChange}
-                placeholder="List any known allergies"
+                placeholder="Allergies"
               />
-              {errors.allergies && (
-                <span className="error-message">{errors.allergies}</span>
-              )}
+              {errors.allergies && <span className="error-message">{errors.allergies}</span>}
             </div>
           </div>
         )}
@@ -351,7 +314,7 @@ Ensure your response is comprehensive, professional, and tailored to the patient
               type="submit"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Analyzing..." : "Get Diagnosis"}
+              {isSubmitting ? "Submitting..." : "Get Diagnosis"}
             </button>
           )}
         </div>
@@ -360,7 +323,7 @@ Ensure your response is comprehensive, professional, and tailored to the patient
       {diagnosis && (
         <div className="diagnosis-result">
           <h2>AI Diagnosis</h2>
-          <ReactMarkdown>{diagnosis}</ReactMarkdown>
+          <p>{diagnosis}</p>
         </div>
       )}
     </div>

@@ -59,6 +59,15 @@
   outline: none;
 }
 
+.location-inputs {
+  display: flex;
+  gap: 1rem;
+}
+
+.location-inputs .input-group {
+  flex: 1;
+}
+
 .signup-button {
   width: 100%;
   background-color: var(--primary-color);
@@ -91,8 +100,19 @@
   text-decoration: underline;
 }
 
+.error-message {
+  color: var(--error-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .hospital-signup-content {
     padding: 2rem;
+  }
+
+  .location-inputs {
+    flex-direction: column;
+    gap: 0;
   }
 }

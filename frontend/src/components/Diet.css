@@ -124,15 +124,6 @@
   margin-bottom: 1rem;
 }
 
-.diet-plan p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: (var(--text-color));
-}
-
-
-
 .diet-plan-content {
   display: flex;
   justify-content: space-between;
@@ -206,7 +197,7 @@
 
 .bmi-label {
   font-size: 1rem;
-  color: var(--text-color);
+  color: var(--secondary-text-color);
 }
 
 .bmi-gauge {

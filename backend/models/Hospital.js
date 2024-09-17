@@ -1,5 +1,18 @@
 const mongoose = require('mongoose');
 
+const doctorSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  specialization: {
+    type: String,
+    required: true,
+    trim: true,
+  }
+});
+
 const hospitalSchema = new mongoose.Schema({
   hospitalName: {
     type: String,
@@ -22,7 +35,12 @@ const hospitalSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  address: {
+  state: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  city: {
     type: String,
     required: true,
     trim: true,
@@ -51,7 +69,8 @@ const hospitalSchema = new mongoose.Schema({
   doctorsOnDuty: {
     type: Number,
     default: 0
-  }
+  },
+  doctors: [doctorSchema]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);
