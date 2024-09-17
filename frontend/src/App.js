@@ -12,6 +12,7 @@ import HospitalSignup from "./components/HospitalSignup";
 import HospitalDashboard from "./components/HospitalDashboard";
 import AdminDashboard from './components/AdminDashboard';
 import UnderConstruction from './components/UnderConstruction';
+import Diagnosis from "./components/Diagnosis";
 import "./App.css";
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                 element={<HospitalDashboard />} 
               />
               <Route path="/under-construction" element={<UnderConstruction/>} />
+              <Route path="/diagnosis" element={<Diagnosis />} />
             </Routes>
           </main>
           <Footer />
