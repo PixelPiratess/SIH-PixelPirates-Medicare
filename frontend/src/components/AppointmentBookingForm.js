@@ -96,7 +96,7 @@ const AppointmentBookingForm = () => {
         alert('Appointment booked successfully!');
         // Reset form or redirect user
       } catch (error) {
-        console.error('Error booking appointment:', error);
+        console.error('Error booking appointment:', error.response?.data || error.message);
         alert('Failed to book appointment. Please try again.');
       }
     } else {

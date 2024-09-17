@@ -195,6 +195,8 @@ router.delete('/remove-doctor/:id', auth, async (req, res) => {
 
 // Book an appointment
 router.post('/book-appointment/:hospitalId', async (req, res) => {
+  console.log('Received appointment data:', req.body);
+  console.log('Hospital ID:', req.params.hospitalId);
   try {
     const { hospitalId } = req.params;
     const appointmentData = req.body;
@@ -211,7 +213,7 @@ router.post('/book-appointment/:hospitalId', async (req, res) => {
     res.status(201).json({ message: 'Appointment booked successfully' });
   } catch (error) {
     console.error('Error booking appointment:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 
