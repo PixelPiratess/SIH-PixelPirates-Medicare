@@ -4,19 +4,102 @@ import { State, City } from 'country-state-city';
 import './Home.css';
 
 const services = [
-  { id: 1, title: 'General Health', icon: <Activity />, details: ['Service A', 'Service B', 'Service C'] },
-  { id: 2, title: 'Specialized Care', icon: <Users />, details: ['Service D', 'Service E', 'Service F'] },
-  { id: 3, title: 'Emergency Services', icon: <Clock />, details: ['Service G', 'Service H', 'Service I'] },
-  { id: 4, title: 'Surgical Procedures', icon: <Hospital />, details: ['Service J', 'Service K', 'Service L'] },
-  { id: 5, title: 'Diagnostic Tests', icon: <Activity />, details: ['Service M', 'Service N', 'Service O'] },
-  { id: 6, title: 'Pediatric Care', icon: <Users />, details: ['Service P', 'Service Q', 'Service R'] },
-  { id: 7, title: 'Geriatric Care', icon: <Clock />, details: ['Service S', 'Service T', 'Service U'] },
-  { id: 8, title: 'Orthopedic Services', icon: <Hospital />, details: ['Service V', 'Service W', 'Service X'] },
-  { id: 9, title: 'Cardiology', icon: <Activity />, details: ['Service Y', 'Service Z', 'Service AA'] },
-  { id: 10, title: 'Neurology', icon: <Users />, details: ['Service BB', 'Service CC', 'Service DD'] },
-  { id: 11, title: 'Oncology', icon: <Clock />, details: ['Service EE', 'Service FF', 'Service GG'] },
-  { id: 12, title: 'Dermatology', icon: <Hospital />, details: ['Service HH', 'Service II', 'Service JJ'] },
+  { id: 1, title: 'Medical History', icon: <Activity />, details: ['Past Diagnosis', 'Past Reports', 'Past Treatments '] },
+  { id: 2, title: 'AI Diagnosis', icon: <Users />, details: ['AI Diagnosis (Perliminary)'] },
+  { id: 3, title: 'Government Schemes', icon: <Users />, details: [
+      'Ayushman Bharat - National Health Protection Mission (AB-NHPS)',
+      'Central Government Health Scheme (CGHS)',
+      'Rashtriya Swasthya Bima Yojana (RSBY)',
+      'Pradhan Mantri Jan Arogya Yojana (PMJAY)',
+      'National Health Mission (NHM)',
+      'And benefits of various other central and state government schemes.'
+    ] 
+  },
+  { id: 4, title: 'Donations', icon: <Hospital />, details: ['Blood Donation', 'Organ Donation', 'Financial Aid'] },
+  { id: 5, title: 'Labs', icon: <Activity />, details: ['Schedule Tests', 'View Report'] },
+  { id: 6, title: 'Telemedecine', icon: <Clock />, details: ['Order Medicines Online'] },
+  { id: 7, title: 'Mental Health', icon: <Clock />, details: ['Are You Depressed? Find out about your mental health status.'] },
+  { id: 8, title: 'For Organisations', icon: <Hospital />, details: ['Hospital Login', 'Register Your Hosiptal'] },
+  { id: 9, title: 'About Us', icon: <Activity />, details: ['About Us'] },
 ];
+
+const getServiceLink = (serviceId, detail) => {
+  const links = {
+    1: {
+      'Past Diagnosis': 'https://example.com/past-diagnosis',
+      'Past Reports': 'https://example.com/past-reports',
+      'Past Treatments': 'https://example.com/past-treatments'
+    },
+    2: {
+      'AI Diagnosis (Perliminary)': '/'
+    },
+    6: {
+      'Order Medicines Online': '/'
+    },
+    4: {
+      'Blood Donation': '/',
+      'Organ Donation': '/',
+      'Financial Aid': '/'
+    },
+    5: {
+      'Schedule Tests': '/',
+      'View Report': '/'
+      },
+    3: {
+      'Ayushman Bharat - National Health Protection Mission (AB-NHPS)': 'https://abdm.gov.in/',
+      'Central Government Health Scheme (CGHS)': 'https://cghs.gov.in/',
+      'Rashtriya Swasthya Bima Yojana (RSBY)': 'https://www.india.gov.in/spotlight/rashtriya-swasthya-bima-yojana',
+      'Pradhan Mantri Jan Arogya Yojana (PMJAY)': 'https://pmjay.gov.in/',
+      'National Health Mission (NHM)': 'https://nhm.gov.in/',
+    },
+    7: {
+      'Are You Depressed? Find out about your mental health status.': '/' 
+    },
+    8: {
+      'Hospital Login': '/',
+      'Register Your Hosiptal': '/'
+      },
+    9: {
+      'About Us': '/'
+    }
+  };
+  
+  return links[serviceId]?.[detail] || null;
+};
+
+const ServicesList = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      {services.map(service => (
+        <div key={service.id} className="bg-white shadow-md rounded-lg p-6">
+          <div className="flex items-center mb-4">
+            <div className="text-blue-500 mr-3">{service.icon}</div>
+            <h2 className="text-xl font-semibold">{service.title}</h2>
+          </div>
+          <ul className="space-y-2">
+            {service.details.map((detail, index) => (
+              <li key={index}>
+                {getServiceLink(service.id, detail) ? (
+                  <a
+                    href={getServiceLink(service.id, detail)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                    onClick={() => console.log(`Link clicked: ${getServiceLink(service.id, detail)}`)}
+                  >
+                    {detail}
+                  </a>
+                ) : (
+                  detail
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const hospitals = [
   { id: 1, name: 'City Hospital', location: 'Mumbai, Maharashtra', city: 'Mumbai', state: 'Maharashtra' },
@@ -135,30 +218,43 @@ const Home = () => {
         </section>
 
         <section className="services">
-          <h2>Services</h2>
-          <div className="services-container">
-            <div className="services-grid">
-              {services.map((service) => (
-                <div 
-                  key={service.id} 
-                  className={`service-item ${selectedService === service.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedService(service.id)}
-                >
-                  <div className="service-header">
-                    {service.icon}
-                    <h3>{service.title}</h3>
-                  </div>
+        <h2>Services</h2>
+        <div className="services-container">
+          <div className="services-grid">
+            {services.map((service) => (
+              <div 
+                key={service.id} 
+                className={`service-item ${selectedService === service.id ? 'selected' : ''}`}
+                onClick={() => setSelectedService(service.id)}
+              >
+                <div className="service-header">
+                  {service.icon}
+                  <h3>{service.title}</h3>
                 </div>
-              ))}
-            </div>
-            <div className="service-details">
-              <h3>{services.find(service => service.id === selectedService)?.title}</h3>
-              {services.find(service => service.id === selectedService)?.details.map((detail, index) => (
-                <p key={index}>{detail}</p>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
+          <div className="service-details">
+            <h3>{services.find(service => service.id === selectedService)?.title}</h3>
+            {services.find(service => service.id === selectedService)?.details.map((detail, index) => (
+              <p key={index}>
+                {getServiceLink(selectedService, detail) ? (
+                  <a
+                    href={getServiceLink(selectedService, detail)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="scheme-link"
+                  >
+                    {detail}
+                  </a>
+                ) : (
+                  detail
+                )}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
 
         <section className="premium-features">
           <div className="premium-heading">
