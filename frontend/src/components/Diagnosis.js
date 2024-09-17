@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import "./Diagnosis.css";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -10,7 +11,6 @@ const Diagnosis = () => {
     gender: "",
     symptoms: "",
     durationStart: "",
-    durationEnd: "",
     medicalHistory: "",
     currentMedications: "",
     allergies: "",
@@ -70,19 +70,50 @@ const Diagnosis = () => {
   };
 
   const getDiagnosis = async () => {
-    const prompt = `Based on the following patient information, provide a possible diagnosis and recommendations:
-    Age: ${formData.age}
-    Gender: ${formData.gender}
-    Symptoms: ${formData.symptoms}
-    Duration: From ${formData.durationStart} to ${formData.durationEnd}
-    Medical History: ${formData.medicalHistory}
-    Current Medications: ${formData.currentMedications}
-    Allergies: ${formData.allergies}
+    const prompt = `You are an expert doctor with extensive medical knowledge and experience across all specialties. Based on the following patient information, provide a detailed analysis:
 
-    Please provide a detailed diagnosis and recommendations.`;
+Patient Information:
+Age: ${formData.age}
+Gender: ${formData.gender}
+Symptoms: ${formData.symptoms}
+Duration: Since ${formData.durationStart}
+Medical History: ${formData.medicalHistory}
+Current Medications: ${formData.currentMedications}
+Allergies: ${formData.allergies}
+
+Please provide your analysis in the following format:
+
+## Patient Analysis:
+
+**1. Summary of Symptoms:**
+[Provide a concise summary of the patient's symptoms and their duration]
+
+**2. Possible Diagnosis:**
+[List and briefly explain the most likely diagnoses based on the symptoms and patient information]
+
+**3. Recommendations:**
+[Provide detailed recommendations for further tests, treatments, or lifestyle changes]
+
+**4. Additional Information:**
+[Include any additional information or considerations for the patient]
+
+## Caution:
+This analysis is for informational purposes only and should not be considered a substitute for professional medical advice. It's crucial to consult a doctor for proper diagnosis and treatment.
+
+Ensure your response is comprehensive, professional, and tailored to the patient's specific situation. Use markdown formatting for better readability.`;
 
     const result = await model.generateContent(prompt);
-    return result.response.text();
+    const response = result.response.text();
+
+    // Check if the response is related to medical diagnosis
+    if (
+      !response.toLowerCase().includes("diagnosis") ||
+      !response.toLowerCase().includes("symptoms")
+    ) {
+      return "I apologize, but I can only provide information related to medical diagnoses. If you have a medical concern, please provide relevant symptoms and patient information for a proper analysis.";
+    }
+
+    return response;
   };
 
   const validateForm = () => {
@@ -109,10 +140,6 @@ const Diagnosis = () => {
       }
       if (!formData.durationStart) {
         newErrors.durationStart = "Start date is required";
-        isValid = false;
-      }
-      if (!formData.durationEnd) {
-        newErrors.durationEnd = "End date is required";
         isValid = false;
       }
     } else if (currentStep === 3) {
@@ -149,9 +176,7 @@ const Diagnosis = () => {
     if (currentStep === 1) {
       return formData.name && formData.dateOfBirth && formData.gender;
     } else if (currentStep === 2) {
-      return (
-        formData.symptoms && formData.durationStart && formData.durationEnd
-      );
+      return formData.symptoms && formData.durationStart;
     }
     return true;
   };
@@ -159,7 +184,10 @@ const Diagnosis = () => {
   const Progress = ({ step }) => {
     return (
       <div className="progress-bar">
-        <div className="progress" style={{ width: `${(step / 3) * 100}%` }}></div>
+        <div
+          className="progress"
+          style={{ width: `${(step / 3) * 100}%` }}
+        ></div>
       </div>
     );
   };
@@ -181,7 +209,9 @@ const Diagnosis = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-              {errors.name && <span className="error-message">{errors.name}</span>}
+              {errors.name && (
+                <span className="error-message">{errors.name}</span>
+              )}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Date of Birth</label>
@@ -192,7 +222,9 @@ const Diagnosis = () => {
                 value={formData.dateOfBirth}
                 onChange={handleChange}
               />
-              {errors.dateOfBirth && <span className="error-message">{errors.dateOfBirth}</span>}
+              {errors.dateOfBirth && (
+                <span className="error-message">{errors.dateOfBirth}</span>
+              )}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Gender</label>
@@ -207,7 +239,9 @@ const Diagnosis = () => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-              {errors.gender && <span className="error-message">{errors.gender}</span>}
+              {errors.gender && (
+                <span className="error-message">{errors.gender}</span>
+              )}
             </div>
           </div>
         )}
@@ -224,10 +258,14 @@ const Diagnosis = () => {
                 onChange={handleChange}
                 placeholder="Describe your symptoms"
               />
-              {errors.symptoms && <span className="error-message">{errors.symptoms}</span>}
+              {errors.symptoms && (
+                <span className="error-message">{errors.symptoms}</span>
+              )}
             </div>
             <div className="diagnosis-form-group">
-              <label className="diagnosis-label">Start Date</label>
+              <label className="diagnosis-label">
+                When did the symptoms start?
+              </label>
               <input
                 className="diagnosis-input"
                 type="date"
@@ -235,18 +273,9 @@ const Diagnosis = () => {
                 value={formData.durationStart}
                 onChange={handleChange}
               />
-              {errors.durationStart && <span className="error-message">{errors.durationStart}</span>}
-            </div>
-            <div className="diagnosis-form-group">
-              <label className="diagnosis-label">End Date</label>
-              <input
-                className="diagnosis-input"
-                type="date"
-                name="durationEnd"
-                value={formData.durationEnd}
-                onChange={handleChange}
-              />
-              {errors.durationEnd && <span className="error-message">{errors.durationEnd}</span>}
+              {errors.durationStart && (
+                <span className="error-message">{errors.durationStart}</span>
+              )}
             </div>
           </div>
         )}
@@ -261,9 +290,11 @@ const Diagnosis = () => {
                 name="medicalHistory"
                 value={formData.medicalHistory}
                 onChange={handleChange}
-                placeholder="Medical history"
+                placeholder="Any previous medical conditions or surgeries"
               />
-              {errors.medicalHistory && <span className="error-message">{errors.medicalHistory}</span>}
+              {errors.medicalHistory && (
+                <span className="error-message">{errors.medicalHistory}</span>
+              )}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Current Medications</label>
@@ -272,9 +303,13 @@ const Diagnosis = () => {
                 name="currentMedications"
                 value={formData.currentMedications}
                 onChange={handleChange}
-                placeholder="Current medications"
+                placeholder="List any medications you're currently taking"
               />
-              {errors.currentMedications && <span className="error-message">{errors.currentMedications}</span>}
+              {errors.currentMedications && (
+                <span className="error-message">
+                  {errors.currentMedications}
+                </span>
+              )}
             </div>
             <div className="diagnosis-form-group">
               <label className="diagnosis-label">Allergies</label>
@@ -283,9 +318,11 @@ const Diagnosis = () => {
                 name="allergies"
                 value={formData.allergies}
                 onChange={handleChange}
-                placeholder="Allergies"
+                placeholder="List any known allergies"
               />
-              {errors.allergies && <span className="error-message">{errors.allergies}</span>}
+              {errors.allergies && (
+                <span className="error-message">{errors.allergies}</span>
+              )}
             </div>
           </div>
         )}
@@ -314,7 +351,7 @@ const Diagnosis = () => {
               type="submit"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Submitting..." : "Get Diagnosis"}
+              {isSubmitting ? "Analyzing..." : "Get Diagnosis"}
             </button>
           )}
         </div>
@@ -323,7 +360,7 @@ const Diagnosis = () => {
       {diagnosis && (
         <div className="diagnosis-result">
           <h2>AI Diagnosis</h2>
-          <p>{diagnosis}</p>
+          <ReactMarkdown>{diagnosis}</ReactMarkdown>
         </div>
       )}
     </div>
