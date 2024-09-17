@@ -21,7 +21,7 @@ const Diagnosis = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
 
-  const API_KEY = "AIzaSyCz3v3B_gJ21FIJm9xbwS1yfA0eZMPmwao"; // Replace with your actual API key
+  const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
