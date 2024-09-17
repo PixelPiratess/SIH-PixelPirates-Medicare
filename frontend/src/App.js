@@ -14,6 +14,7 @@ import AdminDashboard from './components/AdminDashboard';
 import UnderConstruction from './components/UnderConstruction';
 import Diagnosis from "./components/Diagnosis";
 import Diet from "./components/Diet";
+import AppointmentBookingForm from "./components/AppointmentBookingForm";
 import "./App.css";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
               <Route path="/under-construction" element={<UnderConstruction/>} />
               <Route path="/diagnosis" element={<Diagnosis />} />
               <Route path="/diet" element={<Diet />} />
+              <Route path="/appointment-booking" element={<AppointmentBookingForm />} />
             </Routes>
           </main>
           <Footer />

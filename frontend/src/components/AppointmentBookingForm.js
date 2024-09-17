@@ -1,6 +1,4 @@
-
 import React, { useState } from 'react';
-// import { Calendar, Clock } from 'lucide-react';
 import './AppointmentBookingForm.css';
 
 const AppointmentBookingForm = () => {
@@ -33,136 +31,166 @@ const AppointmentBookingForm = () => {
   };
 
   return (
-    <div className="appointment-form-container">
-      <h1 className="form-title1">Book an appointment</h1>
+    <div className="appointment-container">
+      <h1 className="appointment-title">Book an Appointment</h1>
+      <div className="progress-bar">
+        <div className="progress" style={{width: '100%'}}></div>
+      </div>
       <form onSubmit={handleSubmit} className="appointment-form">
-        <div className="form-grid">
-          <input
-            type="text"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            placeholder="Full name"
-            className="form-input1"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email address"
-            className="form-input1"
-            required
-          />
-        </div>
-        <div className="form-grid">
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            placeholder="Enter Phone Number"
-            className="form-input1"
-            required
-          />
-          <div className="input-with-icon">
+        <div className="form-section">
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="fullName">Full Name:</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              className="appointment-input"
+              required
+            />
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="email">Email Address:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="appointment-input"
+              required
+            />
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="phoneNumber">Phone Number:</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              className="appointment-input"
+              required
+            />
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="date">Appointment Date:</label>
             <input
               type="date"
+              id="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
-              className="form-input1"
+              className="appointment-input"
               required
             />
           </div>
-        </div>
-        <div className="form-grid">
-          <div className="input-with-icon">
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="time">Appointment Time:</label>
             <input
               type="time"
-              name="time"
               id="time"
+              name="time"
               value={formData.time}
               onChange={handleChange}
-              className="form-input1"
+              className="appointment-input"
               required
             />
           </div>
-          <select
-            name="specialization"
-            value={formData.specialization}
-            onChange={handleChange}
-            className="form-select1"
-            required
-          >
-            <option value="">Select specialization</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="dermatology">Dermatology</option>
-            <option value="neurology">Neurology</option>
-          </select>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="specialization">Specialization:</label>
+            <select
+              id="specialization"
+              name="specialization"
+              value={formData.specialization}
+              onChange={handleChange}
+              className="appointment-select"
+              required
+            >
+              <option value="">Select specialization</option>
+              <option value="cardiology">Cardiology</option>
+              <option value="dermatology">Dermatology</option>
+              <option value="neurology">Neurology</option>
+            </select>
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="doctor">Doctor:</label>
+            <select
+              id="doctor"
+              name="doctor"
+              value={formData.doctor}
+              onChange={handleChange}
+              className="appointment-select"
+              required
+            >
+              <option value="">Select Doctor</option>
+              <option value="dr-smith">Dr. Smith</option>
+              <option value="dr-johnson">Dr. Johnson</option>
+              <option value="dr-williams">Dr. Williams</option>
+            </select>
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="state">State:</label>
+            <select
+              id="state"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              className="appointment-select"
+              required
+            >
+              <option value="">Select State</option>
+              <option value="california">California</option>
+              <option value="new-york">New York</option>
+              <option value="texas">Texas</option>
+            </select>
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="city">City:</label>
+            <select
+              id="city"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              className="appointment-select"
+              required
+            >
+              <option value="">Select City</option>
+              <option value="los-angeles">Los Angeles</option>
+              <option value="new-york-city">New York City</option>
+              <option value="houston">Houston</option>
+            </select>
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="hospital">Hospital:</label>
+            <select
+              id="hospital"
+              name="hospital"
+              value={formData.hospital}
+              onChange={handleChange}
+              className="appointment-select"
+              required
+            >
+              <option value="">Select Hospital</option>
+              <option value="central-hospital">Central Hospital</option>
+              <option value="city-medical-center">City Medical Center</option>
+              <option value="community-health">Community Health</option>
+            </select>
+          </div>
+          <div className="appointment-form-group">
+            <label className="appointment-label" htmlFor="additionalMessage">Additional Message:</label>
+            <textarea
+              id="additionalMessage"
+              name="additionalMessage"
+              value={formData.additionalMessage}
+              onChange={handleChange}
+              className="appointment-textarea"
+            ></textarea>
+          </div>
         </div>
-        <div className="form-grid">
-          <select
-            name="doctor"
-            value={formData.doctor}
-            onChange={handleChange}
-            className="form-select1"
-            required
-          >
-            <option value="">Select Doctor</option>
-            <option value="dr-smith">Dr. Smith</option>
-            <option value="dr-johnson">Dr. Johnson</option>
-            <option value="dr-williams">Dr. Williams</option>
-          </select>
-          <select
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            className="form-select1"
-            required
-          >
-            <option value="">Select State</option>
-            <option value="california">California</option>
-            <option value="new-york">New York</option>
-            <option value="texas">Texas</option>
-          </select>
-        </div>
-        <div className="form-grid">
-          <select
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            className="form-select1"
-            required
-          >
-            <option value="">Select City</option>
-            <option value="los-angeles">Los Angeles</option>
-            <option value="new-york-city">New York City</option>
-            <option value="houston">Houston</option>
-          </select>
-          <select
-            name="hospital"
-            value={formData.hospital}
-            onChange={handleChange}
-            className="form-select1"
-            required
-          >
-            <option value="">Select Hospital</option>
-            <option value="central-hospital">Central Hospital</option>
-            <option value="city-medical-center">City Medical Center</option>
-            <option value="community-health">Community Health</option>
-          </select>
-        </div>
-        <textarea
-          name="additionalMessage"
-          value={formData.additionalMessage}
-          onChange={handleChange}
-          placeholder="Additional Message"
-          className="form-textarea1"
-        ></textarea>
-        <button type="submit" className="submit-button">
-          BOOK NOW
+        <button type="submit" className="appointment-submit-button">
+          Book Appointment
         </button>
       </form>
     </div>
