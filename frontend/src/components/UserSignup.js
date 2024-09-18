@@ -57,7 +57,7 @@ const UserSignup = () => {
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        navigate('/dashboard');
+        navigate('/user-login');
       } else {
         setError(data.message || 'An error occurred during signup');
       }

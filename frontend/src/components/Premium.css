@@ -1,12 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --primary-color: #4a90e2;
+  --background-color: #f4f7fa;
+  --text-color: #333333;
+  --secondary-text-color: #666666;
+  --feature-background: #ffffff;
+  --golden-color: #f7c948;
+  --gradient-color-1: #4a90e2;
+  --gradient-color-2: #007aff;
+}
 
 .Premium-page {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Lato', sans-serif;
   margin-top: 35px;
   padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  position: relative;
+  overflow: hidden;
+}
+
+.background-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-left,
+.background-right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  opacity: 0.1;
+}
+
+.background-left {
+  left: -25%;
+}
+
+.background-right {
+  right: -25%;
 }
 
 .Premium-page main {
@@ -14,12 +55,13 @@
 }
 
 .Premium-page section {
-  padding: 5rem var(--content-padding);
-  max-width: var(--content-max-width);
+  padding: 5rem 2rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .Premium-page h1, .Premium-page h2, .Premium-page h3 {
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 
@@ -41,11 +83,24 @@
   color: #ffffff;
   text-align: center;
   padding: 10rem 2rem;
+  position: relative;
+}
+
+#Premium-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-color);
+  opacity: 0.1;
 }
 
 #Premium-hero p {
-  color: var(--text-color);
-  text-align: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .Premium-cta-button {
@@ -56,11 +111,15 @@
   border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .Premium-cta-button:hover {
   transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .Premium-features-grid, .Premium-reasons-grid {
@@ -74,7 +133,18 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.Premium-feature-card:hover, .Premium-reason:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon, .reason-icon {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
 }
 
 .Premium-reason h3 {
@@ -82,31 +152,20 @@
   margin-top: 0.5rem;
 }
 
-.Premium-feature-card:hover, .Premium-reason:hover {
-  transform: translateY(-5px);
-}
-
-.Premium-feature-card i {
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 1rem;
-}
-
 #Premium-why-premium {
   background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
   color: #ffffff;
-  size-adjust:inherit;
 }
 
 #Premium-why-premium > h2 {
   color: #ffffff;
-  margin-top: 0.5rem;
 }
 
 .Premium-testimonial-carousel {
   position: relative;
   height: 200px;
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 .Premium-testimonial {
@@ -119,8 +178,6 @@
   transition: opacity 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
-
-
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -132,6 +189,12 @@
 
 .Premium-testimonial.active {
   opacity: 1;
+}
+
+.testimonial-author {
+  font-style: italic;
+  color: var(--secondary-text-color);
+  margin-top: 1rem;
 }
 
 .Premium-testimonial-dots {
@@ -150,7 +213,6 @@
   transition: background-color 0.3s ease;
 }
 
-
 .dot.active {
   background-color: var(--primary-color);
 }
@@ -162,5 +224,13 @@
   
   .Premium-page h2 {
     font-size: 2rem;
+  }
+
+  .Premium-page section {
+    padding: 3rem 1rem;
+  }
+
+  #Premium-hero {
+    padding: 6rem 1rem;
   }
 }
