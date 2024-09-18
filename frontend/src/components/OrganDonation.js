@@ -70,7 +70,14 @@ const OrganDonation = () => {
               <option value="lungs">Lungs</option>
               <option value="pancreas">Pancreas</option>
             </select>
-            <input type="text" placeholder="Hospital Name" required />
+            <select required>
+              <option value="">Select Hosiptal</option>
+              <option value="City-Central">City-Central</option>
+              <option value="City Hospital">City Hospital</option>
+              <option value="State Medical Center">State Medical Center</option>
+              <option value="General Hospital">General Hospital</option>
+              <option value="Community Health Center">Community Health Center</option>
+            </select>
             <input type="tel" placeholder="Contact Number" required />
             <button type="submit" className="organ-donation-submit-button">Submit Request</button>
           </form>
