@@ -31,10 +31,10 @@ const getServiceLink = (serviceId, detail) => {
       'Past Treatments': '/under-construction'
     },
     2: {
-      'AI Diagnosis (Perliminary)': '/under-construction'
+      'AI Diagnosis (Perliminary)': '/diagnosis'
     },
     6: {
-      'Order Medicines Online': '/under-construction'
+      'Order Medicines Online': '/medstore'
     },
     4: {
       'Blood Donation': '/under-construction',

@@ -8,12 +8,12 @@ const MedStore = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const medicines = [
-    { id: 1, name: 'Aspirin', price: 5.99, category: 'Pain Relief', icon: Pill },
-    { id: 2, name: 'Amoxicillin', price: 12.99, category: 'Antibiotics', icon: Pill },
-    { id: 3, name: 'Lisinopril', price: 8.99, category: 'Blood Pressure', icon: Thermometer },
-    { id: 4, name: 'Metformin', price: 7.99, category: 'Diabetes', icon: Syringe },
-    { id: 5, name: 'Ibuprofen', price: 6.99, category: 'Pain Relief', icon: Pill },
-    { id: 6, name: 'Omeprazole', price: 9.99, category: 'Digestive Health', icon: Stethoscope },
+    { id: 1, name: 'Aspirin', price: 25, category: 'Pain Relief', icon: Pill },
+    { id: 2, name: 'Amoxicillin', price: 100, category: 'Antibiotics', icon: Pill },
+    { id: 3, name: 'Lisinopril', price: 85, category: 'Blood Pressure', icon: Thermometer },
+    { id: 4, name: 'Metformin', price: 70, category: 'Diabetes', icon: Syringe },
+    { id: 5, name: 'Ibuprofen', price: 60, category: 'Pain Relief', icon: Pill },
+    { id: 6, name: 'Omeprazole', price: 190, category: 'Digestive Health', icon: Stethoscope },
   ];
 
   const addToCart = (medicine) => {
@@ -67,7 +67,7 @@ const MedStore = () => {
               </div>
               <h3>{medicine.name}</h3>
               <p className="category">{medicine.category}</p>
-              <p className="price">${medicine.price.toFixed(2)}</p>
+              <p className="price">₹{medicine.price.toFixed(2)}</p>
               <button onClick={() => addToCart(medicine)}>Add to Cart</button>
             </div>
           ))}
@@ -80,10 +80,10 @@ const MedStore = () => {
             <>
               <ul>
                 {cart.map((item, index) => (
-                  <li key={index}>{item.name} - ${item.price.toFixed(2)}</li>
+                  <li key={index}>{item.name} - ₹{item.price.toFixed(2)}</li>
                 ))}
               </ul>
-              <p>Total: ${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
+              <p>Total: ₹{cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}</p>
               <button className="checkout-btn">Checkout</button>
               <button className="clear-cart-btn" onClick={clearCart}>
                 <X size={16} /> Clear Cart
