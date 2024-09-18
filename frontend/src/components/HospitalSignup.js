@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Hospital, Mail, Phone, Building, User } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Hospital, Mail, Phone, Building, User, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { State, City } from 'country-state-city';
 import './HospitalSignup.css';
 
 const HospitalSignup = () => {
@@ -12,12 +13,28 @@ const HospitalSignup = () => {
     adminName: '',
     password: '',
     confirmPassword: '',
+    state: '',
+    city: '',
   });
   const [error, setError] = useState('');
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const indianStates = State.getStatesOfCountry('IN');
+    setStates(indianStates);
+  }, []);
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    if (name === 'state') {
+      const stateCities = City.getCitiesOfState('IN', value);
+      setCities(stateCities);
+      setFormData(prevState => ({ ...prevState, city: '' }));
+    }
   };
 
   const validateForm = () => {
@@ -47,6 +64,14 @@ const HospitalSignup = () => {
     }
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
+      return false;
+    }
+    if (!formData.state) {
+      setError('Please select a state');
+      return false;
+    }
+    if (!formData.city) {
+      setError('Please select a city');
       return false;
     }
     return true;
@@ -135,6 +160,34 @@ const HospitalSignup = () => {
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="input-group">
+            <MapPin size={20} />
+            <select
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select State</option>
+              {states.map(state => (
+                <option key={state.isoCode} value={state.isoCode}>{state.name}</option>
+              ))}
+            </select>
+          </div>
+          <div className="input-group">
+            <MapPin size={20} />
+            <select
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select City</option>
+              {cities.map(city => (
+                <option key={city.name} value={city.name}>{city.name}</option>
+              ))}
+            </select>
           </div>
           <div className="input-group">
             <User size={20} />

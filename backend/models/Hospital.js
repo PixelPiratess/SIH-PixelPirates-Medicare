@@ -27,6 +27,12 @@ const hospitalSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  state: { type: String, required: true },
+  city: { type: String, required: true },
+  doctors: [{ 
+    name: String, 
+    specialization: String 
+  }],
   adminName: {
     type: String,
     required: true,

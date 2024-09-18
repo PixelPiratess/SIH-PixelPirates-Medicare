@@ -1,6 +1,5 @@
-// HospitalDashboard.js
 import React, { useState, useEffect } from 'react';
-import { Hospital, Mail, Phone, MapPin, User, AlertCircle, Activity, Users, Calendar, Bed, Stethoscope } from 'lucide-react';
+import { Hospital, Mail, Phone, MapPin, User, AlertCircle, Activity, Users, Calendar, Bed, Stethoscope, PlusCircle, Check, X } from 'lucide-react';
 import './HospitalDashboard.css';
 
 const HospitalDashboard = () => {
@@ -9,9 +8,13 @@ const HospitalDashboard = () => {
   const [error, setError] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [editedStats, setEditedStats] = useState({});
+  const [doctors, setDoctors] = useState([]);
+  const [newDoctor, setNewDoctor] = useState({ name: '', specialization: '' });
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     fetchHospitalData();
+    fetchAppointments();
   }, []);
 
   const fetchHospitalData = async () => {
@@ -28,10 +31,29 @@ const HospitalDashboard = () => {
       const data = await response.json();
       setHospitalData(data);
       setEditedStats(data);
+      setDoctors(data.doctors || []);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchAppointments = async () => {
+    try {
+      const token = localStorage.getItem('hospitalToken');
+      const response = await fetch('http://localhost:5000/api/auth/hospital/appointments', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch appointments');
+      }
+      const data = await response.json();
+      setAppointments(data);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -60,6 +82,51 @@ const HospitalDashboard = () => {
       const updatedData = await response.json();
       setHospitalData(updatedData);
       setEditMode(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleNewDoctorChange = (e) => {
+    const { name, value } = e.target;
+    setNewDoctor(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddDoctor = async () => {
+    try {
+      const token = localStorage.getItem('hospitalToken');
+      const response = await fetch('http://localhost:5000/api/auth/hospital/add-doctor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(newDoctor)
+      });
+      if (!response.ok) {
+        throw new Error('Failed to add doctor');
+      }
+      const updatedHospital = await response.json();
+      setDoctors(updatedHospital.doctors);
+      setNewDoctor({ name: '', specialization: '' });
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleAppointmentAction = async (appointmentId, action) => {
+    try {
+      const token = localStorage.getItem('hospitalToken');
+      const response = await fetch(`http://localhost:5000/api/auth/hospital/appointments/${appointmentId}/${action}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to ${action} appointment`);
+      }
+      fetchAppointments(); // Refresh appointments after action
     } catch (err) {
       setError(err.message);
     }
@@ -136,6 +203,72 @@ const HospitalDashboard = () => {
                 ) : (
                   <p className="hd-stat-value">{hospitalData[stat]}</p>
                 )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="hd-doctors-card">
+          <h2 className="hd-card-title">Doctors</h2>
+          <div className="hd-doctors-list">
+            {doctors.map((doctor, index) => (
+              <div key={index} className="hd-doctor-item">
+                <Stethoscope size={20} className="hd-doctor-icon" />
+                <span className="hd-doctor-name">{doctor.name}</span>
+                <span className="hd-doctor-specialization">{doctor.specialization}</span>
+              </div>
+            ))}
+          </div>
+          <div className="hd-add-doctor">
+            <input
+              type="text"
+              name="name"
+              value={newDoctor.name}
+              onChange={handleNewDoctorChange}
+              placeholder="Doctor Name"
+              className="hd-doctor-input"
+            />
+            <input
+              type="text"
+              name="specialization"
+              value={newDoctor.specialization}
+              onChange={handleNewDoctorChange}
+              placeholder="Specialization"
+              className="hd-doctor-input"
+            />
+            <button onClick={handleAddDoctor} className="hd-add-doctor-button">
+              <PlusCircle size={20} />
+              Add Doctor
+            </button>
+          </div>
+        </div>
+
+        <div className="hd-appointments-card">
+          <h2 className="hd-card-title">Appointments</h2>
+          <div className="hd-appointments-list">
+            {appointments.map((appointment) => (
+              <div key={appointment._id} className="hd-appointment-item">
+                <div className="hd-appointment-info">
+                  <span className="hd-appointment-name">{appointment.fullName}</span>
+                  <span className="hd-appointment-date">{new Date(appointment.date).toLocaleDateString()} {appointment.time}</span>
+                  <span className="hd-appointment-doctor">{appointment.doctor.name}</span>
+                </div>
+                <div className="hd-appointment-actions">
+                  <button 
+                    className="hd-appointment-accept" 
+                    onClick={() => handleAppointmentAction(appointment._id, 'accept')}
+                    disabled={appointment.status !== 'Pending'}
+                  >
+                    <Check size={20} />
+                  </button>
+                  <button 
+                    className="hd-appointment-deny" 
+                    onClick={() => handleAppointmentAction(appointment._id, 'deny')}
+                    disabled={appointment.status !== 'Pending'}
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
