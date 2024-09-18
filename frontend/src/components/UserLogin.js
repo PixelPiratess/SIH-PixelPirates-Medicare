@@ -44,6 +44,7 @@ const UserLogin = () => {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userName', data.name);
         localStorage.setItem('role', data.role);
+        localStorage.setItem('userEmail', data.email); // Store email in localStorage
         window.dispatchEvent(new Event('storage'));
 
         // Redirect based on user role

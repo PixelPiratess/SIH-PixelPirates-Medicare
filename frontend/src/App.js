@@ -25,6 +25,7 @@ import MedStore from "./components/MedStore";
 import TeleMedicine from "./components/TeleMedicine";
 import PremiumFeatures from "./components/Premium";
 import AboutUs from "./components/AboutUs";
+import Dashboard from "./components/Dashboard";
 import "./App.css";
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
               <Route path="/telemedicine" element={<TeleMedicine />} />
               <Route path="/premium" element={<PremiumFeatures />} />
               <Route path="/aboutus" element={<AboutUs />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </main>
           <Footer />
