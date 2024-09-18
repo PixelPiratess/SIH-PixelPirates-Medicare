@@ -1,197 +1,223 @@
 /* Diagnosis.css */
 
 :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #f0f4f8;
-    --text-color: #333;
-    --background-color: #ffffff;
-    --feature-background: #f9fafb;
-    --gradient-color-1: #4a90e2;
-    --gradient-color-2: #5cb3ff;
-    --error-color: #ff6b6b;
-    --success-color: #4caf50;
-  }
-  
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--secondary-color);
-    margin: 0;
-    padding: 0;
-  }
-  
+  --primary-color: #4a90e2;
+  --secondary-color: #f0f4f8;
+  --text-color: #333;
+  --background-color: #ffffff;
+  --feature-background: #f9fafb;
+  --gradient-color-1: #4a90e2;
+  --gradient-color-2: #5cb3ff;
+  --error-color: #ff6b6b;
+  --success-color: #4caf50;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+}
+
+.diagnosis-container {
+  max-width: 800px;
+  margin: 8rem auto;
+  padding: 2rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-radius: 15px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 60px rgba(74, 144, 226, 0.2);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.diagnosis-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 70%);
+  opacity: 0.1;
+  z-index: -1;
+  filter: blur(20px);
+}
+
+.diagnosis-title {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: var(--secondary-color);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.error-message {
+  color: var(--error-color);
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+.diagnosis-form {
+  background-color: var(--feature-background);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.diagnosis-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.diagnosis-label {
+  display: block;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.diagnosis-input,
+.diagnosis-select,
+.diagnosis-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--background-color);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.diagnosis-input:focus,
+.diagnosis-select:focus,
+.diagnosis-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.diagnosis-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.next-button,
+.prev-button,
+.diagnosis-submit-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.next-button,
+.diagnosis-submit-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.prev-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.next-button:hover,
+.prev-button:hover,
+.diagnosis-submit-button:hover {
+  transform: translateY(-2px);
+}
+
+.next-button:hover,
+.diagnosis-submit-button:hover {
+  background-color: #3a7bc8;
+}
+
+.prev-button:hover {
+  background-color: #e0e0e0;
+}
+
+.diagnosis-submit-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.diagnosis-result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--feature-background);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.diagnosis-result h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
   .diagnosis-container {
-    max-width: 800px;
-    margin: 10rem auto;
-    padding: 2rem;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    border-radius: 15px;
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.1),
-      0 0 60px rgba(74, 144, 226, 0.2); /* This line adds the glow effect */
-    position: relative;
-    overflow: hidden;
-  }
-
-  .diagnosis-container::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 70%);
-    opacity: 0.1;
-    z-index: -1;
-    filter: blur(20px);
-  }
-  
-  .diagnosis-title {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .progress-bar {
-    height: 6px;
-    background-color: var(--secondary-color);
-    border-radius: 3px;
-    margin-bottom: 2rem;
-  }
-  
-  .progress {
-    height: 100%;
-    background-color: var(--primary-color);
-    border-radius: 3px;
-    transition: width 0.3s ease;
-  }
-
-  .error-message {
-    color: #ff6347;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    font-size: 14px;
+    margin: 2rem 1rem;
+    padding: 1.5rem;
   }
   
   .diagnosis-form {
-    background-color: var(--feature-background);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
   }
-  
-  .form-section h3 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-  }
-  
-  .diagnosis-form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  .diagnosis-label {
-    display: block;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-  .diagnosis-input,
-  .diagnosis-select,
-  .diagnosis-textarea {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: var(--background-color);
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    color: var(--text-color);
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .diagnosis-input:focus,
-  .diagnosis-select:focus,
-  .diagnosis-textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-  }
-  
-  .diagnosis-textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
+
   .button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
+    flex-direction: column;
   }
-  
+
   .next-button,
   .prev-button,
   .diagnosis-submit-button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    margin-bottom: 1rem;
   }
-  
-  .next-button,
-  .diagnosis-submit-button {
-    background-color: var(--primary-color);
-    color: white;
-  }
-  
-  .prev-button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-  }
-  
-  .next-button:hover,
-  .prev-button:hover,
-  .diagnosis-submit-button:hover {
-    transform: translateY(-2px);
-  }
-  
-  .next-button:hover,
-  .diagnosis-submit-button:hover {
-    background-color: #3a7bc8;
-  }
-  
-  .prev-button:hover {
-    background-color: #3a7bc8;
-  }
-  
-  .diagnosis-submit-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  @media (max-width: 768px) {
-    .diagnosis-container {
-      margin: 1rem;
-      padding: 1.5rem;
-    }
-    
-    .diagnosis-form {
-      padding: 1.5rem;
-    }
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .form-section {
-    animation: fadeIn 0.5s ease-in-out;
-  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.form-section {
+  animation: fadeIn 0.5s ease-in-out;
+}

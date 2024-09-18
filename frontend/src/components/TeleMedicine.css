@@ -1,0 +1,179 @@
+.telehealth-wrapper {
+  max-width: var(--content-max-width);
+  margin: 80px auto;
+  padding: 2rem var(--content-padding);
+  font-family: 'Lato', sans-serif;
+  color: var(--text-color);
+}
+
+.telehealth-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.telehealth-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.telehealth-subtitle {
+  font-size: 1.1rem;
+  color: var(--secondary-text-color);
+}
+
+.telehealth-services h2,
+.telehealth-process-title,
+.telehealth-cta-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.telehealth-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.telehealth-service-item {
+  background-color: var(--feature-background);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.telehealth-service-item:hover,
+.telehealth-service-selected {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.telehealth-service-selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.telehealth-service-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.telehealth-service-selected .telehealth-service-icon {
+  color: white;
+}
+
+.telehealth-service-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.telehealth-service-description {
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+}
+
+.telehealth-service-selected .telehealth-service-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.telehealth-process {
+  margin-top: 4rem;
+}
+
+.telehealth-steps {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.telehealth-step {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.telehealth-step-number {
+  background-color: var(--primary-color);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+  font-weight: bold;
+}
+
+.telehealth-step-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.telehealth-step-description {
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+}
+
+.telehealth-cta {
+  margin-top: 4rem;
+  text-align: center;
+  background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+  padding: 3rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.telehealth-cta-title {
+  color: white;
+}
+
+.telehealth-cta-description {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.telehealth-cta-button {
+  background-color: white;
+  color: var(--primary-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.telehealth-cta-button:hover {
+  background-color: var(--golden-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .telehealth-title {
+    font-size: 2rem;
+  }
+
+  .telehealth-services h2,
+  .telehealth-process-title,
+  .telehealth-cta-title {
+    font-size: 1.5rem;
+  }
+
+  .telehealth-steps {
+    flex-direction: column;
+  }
+
+  .telehealth-step {
+    margin-bottom: 1.5rem;
+  }
+}

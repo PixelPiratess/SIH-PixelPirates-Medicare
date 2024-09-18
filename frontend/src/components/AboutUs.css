@@ -1,0 +1,132 @@
+.about-us {
+    margin-top: 30px;
+    padding: 4rem 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .content-wrapper {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 0 var(--content-padding);
+  }
+  
+  .about-us h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+  
+  .mission-statement {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--secondary-text-color);
+    margin-bottom: 3rem;
+  }
+  
+  .about-sections {
+    display: grid;
+    gap: 3rem;
+  }
+  
+  .about-sections h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .our-story p, .our-team p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  
+  .value-item {
+    background-color: var(--feature-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .value-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .value-item h3 {
+    margin: 1rem 0;
+    color: var(--primary-color);
+  }
+  
+  .impact-stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .stat-item h3 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-section {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem;
+    background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+    border-radius: 12px;
+    color: white;
+  }
+  
+  .cta-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-button {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--background-color);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .about-us {
+      padding: 2rem 0;
+    }
+  
+    .about-us h1 {
+      font-size: 2rem;
+    }
+  
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .impact-stats {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  
+    .cta-section {
+      padding: 2rem;
+    }
+  }

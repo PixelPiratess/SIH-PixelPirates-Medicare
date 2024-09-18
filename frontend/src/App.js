@@ -21,6 +21,8 @@ import BloodDonation from "./components/Blooddonation";
 import DonationDashboard from "./components/DonationDashboard";
 import FinancialAid from "./components/FinancialAid";
 import OrganDonation from "./components/OrganDonation";
+import TeleMedicine from "./components/TeleMedicine";
+import AboutUs from "./components/AboutUs";
 import Premium from "./components/Premium";
 import MedStore from "./components/MedStore"
 import "./App.css";
@@ -72,8 +74,6 @@ function App() {
               <Route path="/donation-dashboard" element={<DonationDashboard />} />
               <Route path="/financial-aid" element={<FinancialAid />} />
               <Route path="/organ-donation" element={<OrganDonation />} />
-              <Route path="/premium-page" element={<Premium/>} />
-              <Route path="/med-store" element={<MedStore/>}/>
             </Routes>
           </main>
           <Footer />
