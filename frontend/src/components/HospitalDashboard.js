@@ -11,6 +11,7 @@ const HospitalDashboard = () => {
   const [doctors, setDoctors] = useState([]);
   const [newDoctor, setNewDoctor] = useState({ name: '', specialization: '' });
   const [appointments, setAppointments] = useState([]);
+  const [appointmentMessage, setAppointmentMessage] = useState('');
 
   useEffect(() => {
     fetchHospitalData();
@@ -126,6 +127,8 @@ const HospitalDashboard = () => {
       if (!response.ok) {
         throw new Error(`Failed to ${action} appointment`);
       }
+      setAppointmentMessage(`Appointment ${action === 'accept' ? 'Accepted' : 'Denied'} by Admin`);
+      setTimeout(() => setAppointmentMessage(''), 3000);
       fetchAppointments(); // Refresh appointments after action
     } catch (err) {
       setError(err.message);
@@ -244,32 +247,36 @@ const HospitalDashboard = () => {
         </div>
 
         <div className="hd-appointments-card">
-          <h2 className="hd-card-title">Appointments</h2>
-          <div className="hd-appointments-list">
-            {appointments.map((appointment) => (
-              <div key={appointment._id} className="hd-appointment-item">
-                <div className="hd-appointment-info">
-                  <span className="hd-appointment-name">{appointment.fullName}</span>
-                  <span className="hd-appointment-date">{new Date(appointment.date).toLocaleDateString()} {appointment.time}</span>
-                  <span className="hd-appointment-doctor">{appointment.doctor.name}</span>
-                </div>
-                <div className="hd-appointment-actions">
-                  <button 
-                    className="hd-appointment-accept" 
-                    onClick={() => handleAppointmentAction(appointment._id, 'accept')}
-                    disabled={appointment.status !== 'Pending'}
-                  >
-                    <Check size={20} />
-                  </button>
-                  <button 
-                    className="hd-appointment-deny" 
-                    onClick={() => handleAppointmentAction(appointment._id, 'deny')}
-                    disabled={appointment.status !== 'Pending'}
-                  >
-                    <X size={20} />
-                  </button>
-                </div>
+        <h2 className="hd-card-title">Appointments</h2>
+        {appointmentMessage && (
+          <div className="hd-appointment-message">{appointmentMessage}</div>
+        )}
+        <div className="hd-appointments-list">
+          {appointments.map((appointment) => (
+            <div key={appointment._id} className="hd-appointment-item">
+              <div className="hd-appointment-info">
+                <span className="hd-appointment-name">{appointment.fullName}</span>
+                <span className="hd-appointment-date">{new Date(appointment.date).toLocaleDateString()} {appointment.time}</span>
+                <span className="hd-appointment-doctor">{appointment.doctor.name}</span>
+                <span className="hd-appointment-status">{appointment.status}</span>
               </div>
+              <div className="hd-appointment-actions">
+                <button 
+                  className="hd-appointment-accept" 
+                  onClick={() => handleAppointmentAction(appointment._id, 'accept')}
+                  disabled={appointment.status !== 'Pending'}
+                >
+                  <Check size={20} />
+                </button>
+                <button 
+                  className="hd-appointment-deny" 
+                  onClick={() => handleAppointmentAction(appointment._id, 'deny')}
+                  disabled={appointment.status !== 'Pending'}
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
             ))}
           </div>
         </div>
