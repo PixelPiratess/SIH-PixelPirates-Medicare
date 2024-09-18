@@ -23,6 +23,7 @@ import FinancialAid from "./components/FinancialAid";
 import OrganDonation from "./components/OrganDonation";
 import MedStore from "./components/MedStore";
 import TeleMedicine from "./components/TeleMedicine";
+import PremiumFeatures from "./components/Premium";
 import AboutUs from "./components/AboutUs";
 import "./App.css";
 
@@ -75,6 +76,7 @@ function App() {
               <Route path="/organ-donation" element={<OrganDonation />} />
               <Route path="/medstore" element={<MedStore />} />
               <Route path="/telemedicine" element={<TeleMedicine />} />
+              <Route path="/premium" element={<PremiumFeatures />} />
               <Route path="/aboutus" element={<AboutUs />} />
             </Routes>
           </main>

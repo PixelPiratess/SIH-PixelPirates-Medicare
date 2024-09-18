@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+.Premium-page {
+  font-family: 'Poppins', sans-serif;
+  margin-top: 35px;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.Premium-page main {
+  padding-top: 80px;
+}
+
+.Premium-page section {
+  padding: 5rem var(--content-padding);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.Premium-page h1, .Premium-page h2, .Premium-page h3 {
+  font-weight: 600;
+}
+
+.Premium-page h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.Premium-page h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+#Premium-hero {
+  background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+  color: #ffffff;
+  text-align: center;
+  padding: 10rem 2rem;
+}
+
+#Premium-hero p {
+  color: var(--text-color);
+  text-align: center;
+}
+
+.Premium-cta-button {
+  display: inline-block;
+  background-color: var(--golden-color);
+  color: var(--text-color);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.Premium-cta-button:hover {
+  transform: translateY(-3px);
+}
+
+.Premium-features-grid, .Premium-reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.Premium-feature-card, .Premium-reason {
+  background-color: var(--feature-background);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.Premium-reason h3 {
+  color: var(--text-color);
+  margin-top: 0.5rem;
+}
+
+.Premium-feature-card:hover, .Premium-reason:hover {
+  transform: translateY(-5px);
+}
+
+.Premium-feature-card i {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+#Premium-why-premium {
+  background: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+  color: #ffffff;
+  size-adjust:inherit;
+}
+
+#Premium-why-premium > h2 {
+  color: #ffffff;
+  margin-top: 0.5rem;
+}
+
+.Premium-testimonial-carousel {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.Premium-testimonial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--feature-background);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.Premium-testimonial.active {
+  opacity: 1;
+}
+
+.Premium-testimonial-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--secondary-text-color);
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.dot.active {
+  background-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .Premium-page h1 {
+    font-size: 2.5rem;
+  }
+  
+  .Premium-page h2 {
+    font-size: 2rem;
+  }
+}

@@ -42,6 +42,7 @@ const HoverDropdownMenu2 = () => {
       </a>
       {isHovered && (
         <ul className="dropdown-menu1">
+          <li class="drop-menu"><a  class="dmn" href='/premium'>Learn More</a></li>
           <li class="drop-menu"><a  class="dmn" href='/under-construction'>Detailed Report</a></li>
           <li class="drop-menu"><a class="dmn" href='/under-construction'>Chat with Doctor</a></li>
           <li class="drop-menu"><a class="dmn" href='/appointment-booking'>Direct Appointment Booking</a></li>
