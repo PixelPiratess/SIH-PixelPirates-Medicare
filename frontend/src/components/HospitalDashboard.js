@@ -1,3 +1,4 @@
+// HospitalDashboard.js
 import React, { useState, useEffect } from 'react';
 import { Hospital, Mail, Phone, MapPin, User, AlertCircle, Activity, Users, Calendar, Bed, Stethoscope } from 'lucide-react';
 import './HospitalDashboard.css';
@@ -65,74 +66,75 @@ const HospitalDashboard = () => {
   };
 
   if (loading) {
-    return <div className="hospital-dashboard loading">Loading...</div>;
+    return <div className="hd-loading">Loading...</div>;
   }
 
   if (error) {
-    return <div className="hospital-dashboard error">{error}</div>;
+    return <div className="hd-error">{error}</div>;
   }
 
   if (!hospitalData || !hospitalData.accepted) {
     return (
-      <div className="hospital-dashboard pending">
-        <AlertCircle size={64} color="#4a90e2" />
-        <h2>Application Pending</h2>
-        <p>Our team will contact you shortly. We are eager to have you Onboard!</p>
+      <div className="hd-pending">
+        <AlertCircle size={64} color="#4a90e2" className="hd-alert-icon" />
+        <h2 className="hd-pending-title">Application Pending</h2>
+        <p className="hd-pending-message">Our team will contact you shortly. We are eager to have you Onboard!</p>
       </div>
     );
   }
 
   return (
-    <div className="hospital-dashboard">
-      <div className="dashboard-header">
-        <h1>Welcome, {hospitalData.hospitalName}</h1>
-        <Activity size={32} color="#4a90e2" />
+    <div className="hd-container">
+      <div className="hd-header">
+        <h1 className="hd-title">Welcome, {hospitalData.hospitalName}</h1>
+        <Activity size={32} color="#4a90e2" className="hd-activity-icon" />
       </div>
-      <div className="dashboard-content">
-        <div className="hospital-info card">
-          <h2>Hospital Information</h2>
-          <div className="info-item">
-            <Hospital size={20} />
-            <span>{hospitalData.hospitalName}</span>
+      <div className="hd-content">
+        <div className="hd-info-card">
+          <h2 className="hd-card-title">Hospital Information</h2>
+          <div className="hd-info-item">
+            <Hospital size={20} className="hd-info-icon" />
+            <span className="hd-info-text">{hospitalData.hospitalName}</span>
           </div>
-          <div className="info-item">
-            <Mail size={20} />
-            <span>{hospitalData.email}</span>
+          <div className="hd-info-item">
+            <Mail size={20} className="hd-info-icon" />
+            <span className="hd-info-text">{hospitalData.email}</span>
           </div>
-          <div className="info-item">
-            <Phone size={20} />
-            <span>{hospitalData.phone}</span>
+          <div className="hd-info-item">
+            <Phone size={20} className="hd-info-icon" />
+            <span className="hd-info-text">{hospitalData.phone}</span>
           </div>
-          <div className="info-item">
-            <MapPin size={20} />
-            <span>{hospitalData.address}</span>
+          <div className="hd-info-item">
+            <MapPin size={20} className="hd-info-icon" />
+            <span className="hd-info-text">{hospitalData.address}</span>
           </div>
-          <div className="info-item">
-            <User size={20} />
-            <span>{hospitalData.adminName}</span>
+          <div className="hd-info-item">
+            <User size={20} className="hd-info-icon" />
+            <span className="hd-info-text">{hospitalData.adminName}</span>
           </div>
         </div>
         
-        <div className="quick-stats card">
-          <h2>Quick Stats</h2>
-          <button className='stat-button' onClick={handleEditToggle}>{editMode ? 'Cancel' : 'Edit Stats'}</button>
-          {editMode && <button onClick={handleSaveStats}>Save Stats</button>}
-          <div className="stat-grid">
+        <div className="hd-stats-card">
+          <h2 className="hd-card-title">Quick Stats</h2>
+          <button className='hd-edit-button' onClick={handleEditToggle}>{editMode ? 'Cancel' : 'Edit Stats'}</button>
+          {editMode && <button className="hd-save-button" onClick={handleSaveStats}>Save Stats</button>}
+          <div className="hd-stat-grid">
             {['totalPatients', 'appointmentsToday', 'availableBeds', 'doctorsOnDuty'].map(stat => (
-              <div key={stat} className="stat-item">
-                {stat === 'totalPatients' && <Users size={24} color="#4a90e2" />}
-                {stat === 'appointmentsToday' && <Calendar size={24} color="#4a90e2" />}
-                {stat === 'availableBeds' && <Bed size={24} color="#4a90e2" />}
-                {stat === 'doctorsOnDuty' && <Stethoscope size={24} color="#4a90e2" />}
-                <h3>{stat.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</h3>
+              <div key={stat} className="hd-stat-item">
+                {stat === 'totalPatients' && <Users size={24} color="#4a90e2" className="hd-stat-icon" />}
+                {stat === 'appointmentsToday' && <Calendar size={24} color="#4a90e2" className="hd-stat-icon" />}
+                {stat === 'availableBeds' && <Bed size={24} color="#4a90e2" className="hd-stat-icon" />}
+                {stat === 'doctorsOnDuty' && <Stethoscope size={24} color="#4a90e2" className="hd-stat-icon" />}
+                <h3 className="hd-stat-title">{stat.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</h3>
                 {editMode ? (
                   <input
+                    className="hd-stat-input"
                     type="number"
                     value={editedStats[stat]}
                     onChange={(e) => handleStatChange(stat, e.target.value)}
                   />
                 ) : (
-                  <p>{hospitalData[stat]}</p>
+                  <p className="hd-stat-value">{hospitalData[stat]}</p>
                 )}
               </div>
             ))}

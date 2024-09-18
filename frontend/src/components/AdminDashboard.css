@@ -19,6 +19,7 @@
   
   .admin-dashboard__title {
     font-family: 'Poppins', sans-serif;
+    margin-top: 80px;
     font-size: 2.5rem;
     color: var(--primary-color);
     margin-bottom: 1.5rem;

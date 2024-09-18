@@ -159,7 +159,7 @@ const Home = () => {
           <div className="hero-content">
             <h1>Your One Stop Wellness Portal</h1>
             <p>Empower your well-being with personalized health solutions at your fingertips. Your journey to a healthier, happier life starts here.</p>
-            <button className="cta-button">Appointment Now</button>
+            <button className="cta-button-app">Appointment Now</button>
           </div>
           <div className="hero-image">
             <img src={require('../assets/HeroImg.png')} alt="Hero" />

@@ -156,7 +156,7 @@ h1, h2, h3 {
   }
 }
 
-.cta-button {
+.cta-button-app {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -167,7 +167,7 @@ h1, h2, h3 {
   transition: background-color 0.3s;
 }
 
-.cta-button:hover {
+.cta-button-app:hover {
   background-color: #3a7bc8;
 }
 
