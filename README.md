@@ -19,8 +19,8 @@ SIH-PixelPirates-Medicare is a project developed for the Smart India Hackathon a
 - **Frontend**: HTML, CSS, JavaScript, React
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
-- **APIs**: [List any third-party APIs used]
-- **Deployment**: [Hosting service used, e.g., Heroku, AWS]
+- **APIs**: Google Gemini API Key
+- **Deployment**: Netlify, Render
 
 ## Repository Map (Flow Diagram)
 ![Project Map](https://github.com/PixelPiratess/SIH-PixelPirates-Medicare/blob/main/Repo%20Map%20Medicare.png)
@@ -82,5 +82,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any inquiries, please reach out to:
 
-- **Your Name**: [priyanshkhare4905@gmail.com]
+- **Your Name**: [priyanshkhare4905@gmail.com](mailto:priyanshkhare4905@gmail.com)
 - **GitHub**: [PriyanshK09](https://github.com/PriyanshK09)
