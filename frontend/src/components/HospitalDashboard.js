@@ -21,7 +21,7 @@ const HospitalDashboard = () => {
   const fetchHospitalData = async () => {
     try {
       const token = localStorage.getItem('hospitalToken');
-      const response = await fetch('http://localhost:5000/api/auth/hospital/dashboard', {
+      const response = await fetch('https://sih-pixelpirates-medicare.onrender.com/api/auth/hospital/dashboard', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -43,7 +43,7 @@ const HospitalDashboard = () => {
   const fetchAppointments = async () => {
     try {
       const token = localStorage.getItem('hospitalToken');
-      const response = await fetch('http://localhost:5000/api/auth/hospital/appointments', {
+      const response = await fetch('https://sih-pixelpirates-medicare.onrender.com/api/auth/hospital/appointments', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -69,7 +69,7 @@ const HospitalDashboard = () => {
   const handleSaveStats = async () => {
     try {
       const token = localStorage.getItem('hospitalToken');
-      const response = await fetch('http://localhost:5000/api/auth/hospital/update-stats', {
+      const response = await fetch('https://sih-pixelpirates-medicare.onrender.com/api/auth/hospital/update-stats', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ const HospitalDashboard = () => {
   const handleAddDoctor = async () => {
     try {
       const token = localStorage.getItem('hospitalToken');
-      const response = await fetch('http://localhost:5000/api/auth/hospital/add-doctor', {
+      const response = await fetch('https://sih-pixelpirates-medicare.onrender.com/api/auth/hospital/add-doctor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const HospitalDashboard = () => {
   const handleAppointmentAction = async (appointmentId, action) => {
     try {
       const token = localStorage.getItem('hospitalToken');
-      const response = await fetch(`http://localhost:5000/api/auth/hospital/appointments/${appointmentId}/${action}`, {
+      const response = await fetch(`https://sih-pixelpirates-medicare.onrender.com/api/auth/hospital/appointments/${appointmentId}/${action}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`

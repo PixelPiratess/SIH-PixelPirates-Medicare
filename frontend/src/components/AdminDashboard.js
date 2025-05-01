@@ -12,7 +12,7 @@ const AdminDashboard = () => {
 
   const fetchHospitals = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/admin/hospitals', {
+      const response = await axios.get('https://sih-pixelpirates-medicare.onrender.com/api/admin/hospitals', {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       setHospitals(response.data);
@@ -23,7 +23,7 @@ const AdminDashboard = () => {
 
   const updateHospitalStatus = async (id, accepted) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/hospitals/${id}`, { accepted }, {
+      await axios.put(`https://sih-pixelpirates-medicare.onrender.com/api/admin/hospitals/${id}`, { accepted }, {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       fetchHospitals();

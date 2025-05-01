@@ -3,7 +3,7 @@ import './AppointmentBookingForm.css';
 import axios from 'axios';
 import { State, City } from 'country-state-city';
 
-const API_BASE_URL = 'http://localhost:5000/api/auth/hospital';
+const API_BASE_URL = 'https://sih-pixelpirates-medicare.onrender.com/api/auth/hospital';
 
 const AppointmentBookingForm = () => {
   const [formData, setFormData] = useState({

@@ -21,7 +21,7 @@ const Dashboard = () => {
         throw new Error('User not authenticated');
       }
 
-      const response = await axios.get('http://localhost:5000/api/auth/my-appointments', {
+      const response = await axios.get('https://sih-pixelpirates-medicare.onrender.com/api/auth/my-appointments', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
